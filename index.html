@@ -14,100 +14,86 @@
 }
 html,body{min-height:100%;background:var(--bej);color:var(--txt);font-family:'Raleway',sans-serif;overflow-x:hidden}
 ::selection{background:var(--gl);color:var(--blk)}
-
-/* ── NAV ── */
 .nw{position:fixed;top:0;left:0;right:0;z-index:999;padding:5px 16px;background:var(--bej)}
-nav{background:var(--blk);border-radius:12px;height:72px;display:flex;align-items:center;padding:0 28px;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
-.nb{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1rem;color:var(--bl);text-decoration:none;white-space:nowrap}
-.nb-back{padding:10px 20px;border-radius:22px;font-size:.65rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;background:var(--gl);color:var(--blk);text-decoration:none;margin-left:auto;transition:background .15s}
-.nb-back:hover{background:var(--g)}
-
+nav{background:var(--blk);border-radius:12px;height:72px;display:flex;align-items:center;padding:0 28px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nb{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1rem;color:var(--bl)}
 body{padding-top:88px}
-
-/* ── HERO BANNER ── */
 .banner{margin:0 16px 0;background:var(--gd);border-radius:18px 18px 0 0;padding:44px 52px 32px;position:relative;overflow:hidden}
 .banner::after{content:'';position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:var(--g);opacity:.12}
 .banner h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2.4rem,4.5vw,4.2rem);color:var(--bl);line-height:1;position:relative;z-index:1}
 .banner-sub{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gl);margin-top:8px;position:relative;z-index:1}
-
-/* ── BODY ── */
 .body-wrap{margin:0 16px 16px;background:var(--bl);border-radius:0 0 18px 18px;border:1px solid var(--bm);border-top:none;padding:48px 52px 68px}
-
-/* ── INFO BOX ── */
 .info-box{background:var(--bej);border:1.5px solid var(--bm);border-radius:14px;padding:22px 26px;margin-bottom:36px;display:flex;gap:18px;align-items:flex-start}
 .info-icon{width:44px;height:44px;border-radius:10px;background:var(--gd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .info-icon svg{width:20px;height:20px;fill:none;stroke:var(--gl);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .info-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
 .info-text{font-size:.78rem;color:var(--tm);line-height:1.75}
-
-/* ── FORM ── */
-.form-section-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;color:#4d7040;padding-bottom:10px;border-bottom:2px solid var(--g);margin-bottom:22px;margin-top:36px}
-.form-section-title:first-of-type{margin-top:0}
+.sec-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;color:#4d7040;padding-bottom:10px;border-bottom:2px solid var(--g);margin-bottom:22px;margin-top:36px}
+.sec-title:first-of-type{margin-top:0}
 .fld{margin-bottom:16px}
 .flbl{display:block;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:5px}
-.flbl span{color:#c0392b;margin-left:2px}
-.finp{width:100%;padding:11px 14px;border-radius:9px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.83rem;color:var(--txt);outline:none;resize:none;transition:border-color .18s}
+.req{color:#c0392b;margin-left:2px}
+.opt{color:var(--mu);font-weight:400;text-transform:none;letter-spacing:0;font-size:.5rem}
+.finp{width:100%;padding:11px 14px;border-radius:9px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.83rem;color:var(--txt);outline:none;resize:vertical;transition:border-color .18s}
 .finp:focus{border-color:var(--g)}
 .finp::placeholder{color:var(--bd)}
 .fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 
-/* ── CONTEXT SELECT ── */
-.ctx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;margin-bottom:8px}
-.ctx-card{border:1.5px solid var(--bm);border-radius:10px;padding:12px 16px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--bej);position:relative}
-.ctx-card:hover{border-color:var(--g);background:var(--gp)}
-.ctx-card.selected{border-color:var(--gd);background:var(--gp)}
-.ctx-card input{position:absolute;opacity:0;width:0;height:0}
-.ctx-label{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px;display:flex;align-items:center;gap:7px}
-.ctx-label svg{width:14px;height:14px;fill:none;stroke:var(--gd);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.ctx-label .check{display:none;width:14px;height:14px;fill:none;stroke:var(--gd);stroke-width:2.5;flex-shrink:0;margin-left:auto}
-.ctx-card.selected .check{display:block}
-.ctx-sub{font-size:.62rem;color:var(--mu)}
+/* ── BAĞLAM BUTONLARI ── */
+.ctx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:9px;margin-bottom:10px}
+.ctx-btn{
+  border:1.5px solid var(--bm);border-radius:10px;padding:12px 14px;
+  cursor:pointer;background:var(--bej);text-align:left;width:100%;
+  font-family:'Raleway',sans-serif;transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.ctx-btn:hover{border-color:var(--g);background:var(--gp)}
+.ctx-btn.sel{border-color:var(--gd);background:var(--gp);box-shadow:0 0 0 2px rgba(45,90,61,.12)}
+.ctx-top{font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;display:flex;align-items:center;gap:7px;margin-bottom:2px}
+.ctx-top svg{width:14px;height:14px;fill:none;stroke:var(--gd);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.ctx-ck{display:none;width:13px;height:13px;fill:none;stroke:var(--gd);stroke-width:2.5;margin-left:auto;flex-shrink:0}
+.ctx-btn.sel .ctx-ck{display:block}
+.ctx-desc{font-size:.61rem;color:var(--mu)}
+.ctx-extra{width:100%;padding:10px 13px;border-radius:8px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.82rem;color:var(--txt);outline:none;margin-top:8px;transition:border-color .18s;display:none}
+.ctx-extra:focus{border-color:var(--g)}
+.ctx-extra.show{display:block}
 
-/* ── STAR RATING ── */
+/* ── YILDIZLAR ── */
 .star-wrap{display:flex;gap:6px;margin-bottom:4px}
-.star{width:38px;height:38px;cursor:pointer;transition:transform .1s}
+.star{width:38px;height:38px;cursor:pointer;background:none;border:none;padding:0;transition:transform .1s}
 .star:hover,.star.on{transform:scale(1.15)}
-.star svg{width:38px;height:38px;transition:fill .15s,stroke .15s}
-.star svg{fill:var(--bm);stroke:var(--bd);stroke-width:1.5}
+.star svg{width:38px;height:38px;fill:var(--bm);stroke:var(--bd);stroke-width:1.5;transition:fill .15s,stroke .15s;display:block}
 .star.on svg,.star.hov svg{fill:#f4c542;stroke:#c8980a}
-.star-label{font-size:.67rem;color:var(--mu);font-weight:600;min-height:1.2em}
+.star-lbl{font-size:.67rem;color:var(--mu);font-weight:600;min-height:1.4em;margin-top:3px}
 
-/* ── PHONE OPTIONAL ── */
-.optional-note{font-size:.62rem;color:var(--mu);margin-top:4px;font-style:italic}
-
-/* ── PRIVACY ── */
+/* ── ONAY ── */
 .privacy-row{display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:var(--bej);border:1.5px solid var(--bm);border-radius:10px;margin-bottom:20px}
 .privacy-row input[type=checkbox]{margin-top:2px;accent-color:var(--gd);width:16px;height:16px;flex-shrink:0;cursor:pointer}
 .privacy-text{font-size:.73rem;color:var(--tm);line-height:1.65}
 
-/* ── SUBMIT ── */
+/* ── GÖNDER ── */
 .fsub{width:100%;padding:15px;border-radius:11px;background:var(--gd);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .1s;box-shadow:0 3px 14px rgba(45,90,61,.3)}
-.fsub:hover{background:var(--blk);transform:translateY(-1px)}
-.fsub:active{transform:none}
-.fsub:disabled{background:var(--bd);cursor:not-allowed;transform:none;box-shadow:none}
+.fsub:hover:not(:disabled){background:var(--blk);transform:translateY(-1px)}
+.fsub:disabled{background:var(--bd);cursor:not-allowed;box-shadow:none}
 
-/* ── SUCCESS ── */
-.success-screen{display:none;text-align:center;padding:60px 20px}
-.success-icon{width:70px;height:70px;border-radius:50%;background:#c6d9b8;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
-.success-icon svg{width:30px;height:30px;fill:none;stroke:var(--gd);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.success-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.8rem;color:var(--gd);margin-bottom:10px}
-.success-text{font-size:.82rem;color:var(--tm);line-height:1.75;max-width:460px;margin:0 auto}
-
-/* ── ERR ── */
+/* ── HATA ── */
 .err-msg{font-size:.72rem;color:#c0392b;margin-bottom:12px;display:none;padding:10px 14px;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);border-radius:8px}
 
-/* ── FOOTER ── */
-.ft{margin:0 16px 5px;background:var(--blk);border-radius:12px;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* ── BAŞARI ── */
+.success-screen{display:none;text-align:center;padding:60px 20px}
+.sicon{width:70px;height:70px;border-radius:50%;background:#c6d9b8;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.sicon svg{width:30px;height:30px;fill:none;stroke:var(--gd);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.stitle{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.8rem;color:var(--gd);margin-bottom:10px}
+.stext{font-size:.82rem;color:var(--tm);line-height:1.75;max-width:460px;margin:0 auto}
+
+.ft{margin:0 16px 16px;background:var(--blk);border-radius:12px;padding:16px 32px}
 .ftl{font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;color:var(--bd)}
-.fte{font-size:.76rem;color:var(--gl);text-decoration:none;font-weight:500}
 
 @media(max-width:768px){
   .banner{margin:0 8px 0;padding:24px 20px 20px}
   .body-wrap{margin:0 8px 10px;padding:22px 18px 40px}
-  .fr2,.fr3{grid-template-columns:1fr}
+  .fr2{grid-template-columns:1fr}
   .ctx-grid{grid-template-columns:1fr 1fr}
-  .ft{margin:0 8px 6px;padding:11px 16px}
+  .ft{margin:0 8px 16px;padding:11px 16px}
 }
 @media(max-width:420px){
   .ctx-grid{grid-template-columns:1fr}
@@ -119,18 +105,14 @@ body{padding-top:88px}
 <body>
 
 <div class="nw">
-  <nav>
-    <span class="nb">Eren Akçam</span>
-  </nav>
+  <nav><span class="nb">Eren Akçam</span></nav>
 </div>
 
-<!-- BANNER -->
 <div class="banner">
   <h1>Referans Bırak</h1>
   <div class="banner-sub">Deneyimini paylaş · Görüşünü yaz</div>
 </div>
 
-<!-- BODY -->
 <div class="body-wrap">
 
   <div class="info-box">
@@ -139,127 +121,122 @@ body{padding-top:88px}
     </div>
     <div>
       <div class="info-title">Nasıl Çalışıyor?</div>
-      <div class="info-text">
-        Bıraktığın referans doğrudan benim inceleme panelime düşer. Onayladığım yorumlar portfolyo sitesinde "Referanslar" bölümünde görünür hale gelir — senin adın, unvanın ve puanınla birlikte. Telefon numaranı bırakırsan (zorunlu değil), ziyaretçiler seni arayarak referansı doğrulayabilir.
-      </div>
+      <div class="info-text">Bıraktığın referans doğrudan benim inceleme panelime düşer. Onayladığım yorumlar portfolyo sitesinde "Referanslar" bölümünde görünür hale gelir. Telefon numaranı bırakırsan (zorunlu değil), ziyaretçiler seni arayarak referansı doğrulayabilir.</div>
     </div>
   </div>
 
-  <!-- FORM -->
   <div id="ref-form">
 
-    <div class="form-section-title">Kimsin?</div>
-
+    <!-- KİMSİN -->
+    <div class="sec-title">Kimsin?</div>
     <div class="fr2">
       <div class="fld">
-        <label class="flbl">Ad Soyad <span>*</span></label>
+        <label class="flbl">Ad Soyad <span class="req">*</span></label>
         <input class="finp" id="r-name" type="text" placeholder="Adınız ve soyadınız"/>
       </div>
       <div class="fld">
-        <label class="flbl">Şirket / Kurum</label>
-        <input class="finp" id="r-company" type="text" placeholder="Çalıştığınız yer (opsiyonel)"/>
+        <label class="flbl">Şirket / Kurum <span class="opt">(opsiyonel)</span></label>
+        <input class="finp" id="r-company" type="text" placeholder="Çalıştığınız yer"/>
       </div>
     </div>
     <div class="fr2">
       <div class="fld">
-        <label class="flbl">Pozisyon / Unvan <span>*</span></label>
+        <label class="flbl">Pozisyon / Unvan <span class="req">*</span></label>
         <input class="finp" id="r-title" type="text" placeholder="Müdür, Hoca, İşveren..."/>
       </div>
       <div class="fld">
-        <label class="flbl">Telefon Numarası</label>
+        <label class="flbl">Telefon <span class="opt">(opsiyonel)</span></label>
         <input class="finp" id="r-phone" type="tel" placeholder="+90 5__ ___ __ __"/>
-        <div class="optional-note">Opsiyonel — sitenin ziyaretçileri bu numaradan seni arayabilir.</div>
       </div>
     </div>
 
-    <div class="form-section-title">Beni Nereden Tanıyorsun?</div>
-
+    <!-- BAĞLAM -->
+    <div class="sec-title">Beni Nereden Tanıyorsun?</div>
     <div class="fld">
-      <label class="flbl">İlişki Bağlamı <span>*</span></label>
-      <div class="ctx-grid" id="ctx-grid">
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="Staj"/>
-          <div class="ctx-label">
+      <label class="flbl">İlişki Bağlamı <span class="req">*</span></label>
+      <div class="ctx-grid">
+
+        <button type="button" class="ctx-btn" data-val="Staj" onclick="pickCtx(this)">
+          <div class="ctx-top">
             <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
             Staj
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Staj dönemimde birlikte çalıştık</div>
-        </label>
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="Eğitim / Ders"/>
-          <div class="ctx-label">
+          <div class="ctx-desc">Staj döneminde çalıştık</div>
+        </button>
+
+        <button type="button" class="ctx-btn" data-val="Eğitim / Ders" onclick="pickCtx(this)">
+          <div class="ctx-top">
             <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             Eğitim / Ders
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Öğretmenim veya eğitmenimsiniz</div>
-        </label>
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="Freelance Proje"/>
-          <div class="ctx-label">
+          <div class="ctx-desc">Öğretmenim veya eğitmenimsiniz</div>
+        </button>
+
+        <button type="button" class="ctx-btn" data-val="Freelance Proje" onclick="pickCtx(this)">
+          <div class="ctx-top">
             <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            Freelance Proje
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Freelance
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Bir projede beraber çalıştık</div>
-        </label>
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="İş Arkadaşlığı"/>
-          <div class="ctx-label">
+          <div class="ctx-desc">Bir projede çalıştık</div>
+        </button>
+
+        <button type="button" class="ctx-btn" data-val="İş Arkadaşlığı" onclick="pickCtx(this)">
+          <div class="ctx-top">
             <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-            İş Arkadaşlığı
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            İş Arkadaşı
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Aynı ekipte ya da kurumda</div>
-        </label>
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="Müşteri"/>
-          <div class="ctx-label">
+          <div class="ctx-desc">Aynı ekipte veya kurumda</div>
+        </button>
+
+        <button type="button" class="ctx-btn" data-val="Müşteri" onclick="pickCtx(this)">
+          <div class="ctx-top">
             <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             Müşteri
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Hizmet aldım / sipariş verdim</div>
-        </label>
-        <label class="ctx-card" onclick="selectCtx(this)">
-          <input type="radio" name="ctx" value="Diğer"/>
-          <div class="ctx-label">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div class="ctx-desc">Hizmet aldım / sipariş verdim</div>
+        </button>
+
+        <button type="button" class="ctx-btn" data-val="__other__" onclick="pickCtx(this)">
+          <div class="ctx-top">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Diğer
-            <svg class="check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="ctx-ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <div class="ctx-sub">Farklı bir bağlamda</div>
-        </label>
+          <div class="ctx-desc">Kendiniz yazın</div>
+        </button>
+
       </div>
+      <!-- Detay alanı — koşullu -->
+      <input class="ctx-extra" id="ctx-extra" type="text" placeholder="Açıklayın..."/>
     </div>
 
-    <div class="fld" id="ctx-detail-wrap" style="display:none">
-      <label class="flbl">İlişki Detayı</label>
-      <input class="finp" id="r-ctx-detail" type="text" placeholder="Hangi bölüm, kurum, proje veya ders?"/>
-    </div>
-
-    <div class="form-section-title">Değerlendirme</div>
+    <!-- DEĞERLENDİRME -->
+    <div class="sec-title">Değerlendirme</div>
 
     <div class="fld">
-      <label class="flbl">Genel Puan <span>*</span></label>
+      <label class="flbl">Genel Puan <span class="req">*</span></label>
       <div class="star-wrap" id="star-wrap">
-        <div class="star" data-v="1" onmouseover="hovStar(1)" onmouseout="unhov()" onclick="setStar(1)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="star" data-v="2" onmouseover="hovStar(2)" onmouseout="unhov()" onclick="setStar(2)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="star" data-v="3" onmouseover="hovStar(3)" onmouseout="unhov()" onclick="setStar(3)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="star" data-v="4" onmouseover="hovStar(4)" onmouseout="unhov()" onclick="setStar(4)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <div class="star" data-v="5" onmouseover="hovStar(5)" onmouseout="unhov()" onclick="setStar(5)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <button type="button" class="star" data-v="1" onclick="setStar(1)" onmouseover="hovStar(1)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="2" onclick="setStar(2)" onmouseover="hovStar(2)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="3" onclick="setStar(3)" onmouseover="hovStar(3)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="4" onclick="setStar(4)" onmouseover="hovStar(4)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="5" onclick="setStar(5)" onmouseover="hovStar(5)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
       </div>
-      <div class="star-label" id="star-label">Bir puan seçin</div>
+      <div class="star-lbl" id="star-lbl">Bir puan seçin</div>
     </div>
 
     <div class="fld">
-      <label class="flbl">Yorum / Referans Metni <span>*</span></label>
+      <label class="flbl">Yorum <span class="req">*</span></label>
       <textarea class="finp" id="r-comment" rows="8" placeholder="Eren'i nasıl tanıdınız, birlikte ne yaptınız, çalışma tarzını nasıl değerlendiriyorsunuz? Portfolyoda yazmayan, bizzat gözlemlediğiniz bir şeyi de ekleyebilirsiniz. İstediğiniz kadar uzun yazabilirsiniz."></textarea>
     </div>
 
-    <div class="form-section-title">Onay</div>
-
+    <!-- ONAY -->
+    <div class="sec-title">Onay</div>
     <div class="privacy-row">
       <input type="checkbox" id="r-consent"/>
       <div class="privacy-text">
@@ -268,37 +245,32 @@ body{padding-top:88px}
     </div>
 
     <div class="err-msg" id="r-err"></div>
-
-    <button class="fsub" id="r-submit" onclick="submitRef()">Referansı Gönder</button>
+    <button type="button" class="fsub" id="r-submit" onclick="submitRef()">Referansı Gönder</button>
 
   </div><!-- /ref-form -->
 
   <div class="success-screen" id="ref-success">
-    <div class="success-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <div class="success-title">Referansın Alındı!</div>
-    <div class="success-text">Teşekkürler! Referansın inceleme için gönderildi. Eren onayladıktan sonra portfolyo sitesinde görünür hale gelecek.</div>
+    <div class="sicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="stitle">Referansın Alındı!</div>
+    <div class="stext">Teşekkürler! Referansın inceleme için gönderildi. Eren onayladıktan sonra portfolyo sitesinde görünür hale gelecek.</div>
     <div style="margin-top:18px;display:inline-flex;align-items:center;gap:7px;background:var(--bej);border:1.5px solid var(--bm);border-radius:9px;padding:9px 16px">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gd)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span id="ref-success-ts" style="font-size:.68rem;color:var(--tm);font-weight:600;letter-spacing:.03em"></span>
+      <span id="ref-ts" style="font-size:.68rem;color:var(--tm);font-weight:600;letter-spacing:.03em"></span>
     </div>
   </div>
 
 </div><!-- /body-wrap -->
 
-<div class="ft">
-  <span class="ftl">Eren Akçam · Referans Formu</span>
-</div>
+<div class="ft"><span class="ftl">Eren Akçam · Referans Formu</span></div>
 
 <script>
-/* ── Star Rating ── */
+/* ── YILDIZ ── */
 var _star = 0;
 var starLabels = ['','Çok Kötü','Orta','İyi','Çok İyi','Mükemmel'];
 
 function hovStar(v){
   document.querySelectorAll('.star').forEach(function(s){
-    var sv = parseInt(s.dataset.v);
-    s.classList.toggle('hov', sv <= v);
-    s.classList.remove('on');
+    s.classList.toggle('hov', parseInt(s.dataset.v) <= v);
   });
 }
 function unhov(){
@@ -309,182 +281,178 @@ function unhov(){
 }
 function setStar(v){
   _star = v;
-  unhov();
-  document.getElementById('star-label').textContent = v + ' / 5 — ' + starLabels[v];
+  document.querySelectorAll('.star').forEach(function(s){
+    var sv = parseInt(s.dataset.v);
+    s.classList.toggle('on', sv <= v);
+    s.classList.remove('hov');
+  });
+  document.getElementById('star-lbl').textContent = v + ' / 5 — ' + starLabels[v];
 }
 
-/* ── Context Select ── */
-function selectCtx(lbl){
-  document.querySelectorAll('.ctx-card').forEach(function(c){ c.classList.remove('selected'); });
-  lbl.classList.add('selected');
-  var v = lbl.querySelector('input').value;
-  document.getElementById('ctx-detail-wrap').style.display = (v === 'Diğer' || v === 'Eğitim / Ders' || v === 'Staj') ? 'block' : 'none';
-  if(v === 'Eğitim / Ders') document.getElementById('r-ctx-detail').placeholder = 'Hangi ders / bölüm / okul?';
-  else if(v === 'Staj') document.getElementById('r-ctx-detail').placeholder = 'Hangi şirket / departman?';
-  else document.getElementById('r-ctx-detail').placeholder = 'Açıklayabilirsiniz...';
+/* ── BAĞLAM SEÇİMİ ── */
+var _ctx = '';
+
+function pickCtx(btn){
+  document.querySelectorAll('.ctx-btn').forEach(function(b){ b.classList.remove('sel'); });
+  btn.classList.add('sel');
+  _ctx = btn.getAttribute('data-val');
+
+  var extra = document.getElementById('ctx-extra');
+  var needsExtra = (_ctx === '__other__' || _ctx === 'Eğitim / Ders' || _ctx === 'Staj');
+  extra.style.display = needsExtra ? 'block' : 'none';
+  extra.classList.toggle('show', needsExtra);
+
+  if(_ctx === '__other__')       extra.placeholder = 'Bağlamı kendiniz yazın...';
+  else if(_ctx === 'Eğitim / Ders') extra.placeholder = 'Hangi ders / bölüm / okul?';
+  else if(_ctx === 'Staj')       extra.placeholder = 'Hangi şirket / departman?';
+
+  if(needsExtra) setTimeout(function(){ extra.focus(); }, 50);
 }
 
-/* ── Encode / Decode (basit XOR şifreleme) ── */
-var _KEY = 'ErenRef2025';
-function xorEncode(str){
-  var out = '';
-  for(var i=0; i<str.length; i++){
-    out += String.fromCharCode(str.charCodeAt(i) ^ _KEY.charCodeAt(i % _KEY.length));
-  }
-  return btoa(unescape(encodeURIComponent(out)));
-}
-
-/* ── Submit ── */
-async function submitRef(){
-  var btn = document.getElementById('r-submit');
-  var name    = document.getElementById('r-name').value.trim();
-  var title   = document.getElementById('r-title').value.trim();
-  var company = document.getElementById('r-company').value.trim();
-  var phone   = document.getElementById('r-phone').value.trim();
-  var comment = document.getElementById('r-comment').value.trim();
-  var consent = document.getElementById('r-consent').checked;
-  var ctxEl   = document.querySelector('input[name="ctx"]:checked');
-  var ctx     = ctxEl ? ctxEl.value : '';
-  var ctxDetail = document.getElementById('r-ctx-detail').value.trim();
-
-  var err = document.getElementById('r-err');
-  err.style.display='none';
-
-  if(!name){ return showErr('Ad Soyad zorunludur.'); }
-  if(!title){ return showErr('Pozisyon / Unvan zorunludur.'); }
-  if(!ctx){ return showErr('Lütfen bir ilişki bağlamı seçin.'); }
-  if(!_star){ return showErr('Lütfen bir puan verin.'); }
-  if(!comment){ return showErr('Lütfen yorum yazın.'); }
-  if(!consent){ return showErr('Yayımlanma onayını işaretlemeniz gerekmektedir.'); }
-
-  if(btn){ btn.disabled=true; btn.textContent='Gönderiliyor...'; }
-
-  var ref = {
-    id: 'ref_' + Date.now(),
-    date: new Date().toISOString(),
-    name: name,
-    title: title,
-    company: company,
-    phone: phone,
-    ctx: ctx,
-    ctxDetail: ctxDetail,
-    star: _star,
-    comment: comment,
-    status: 'pending'
-  };
-
-  /* ── Duplicate tespiti: GitHub'dan güncel listeyi çek ── */
-  var dupInfo = await checkDuplicatesOnGH(name);
-  if(dupInfo.count > 0){
-    /* Duplicate bilgisini ref nesnesine işle */
-    ref.duplicateOf = dupInfo.ids;
-    ref.isDuplicate = true;
-    ref.dupCount = dupInfo.count; /* kaç önceki giriş var */
-  }
-
-  /* ── Şifreli localStorage yedeği ── */
-  var pending = [];
-  try{
-    var raw = localStorage.getItem('erenref_pending');
-    if(raw){
-      var decoded = decodeURIComponent(escape(atob(raw)));
-      var tmp = '';
-      for(var i=0;i<decoded.length;i++) tmp += String.fromCharCode(decoded.charCodeAt(i) ^ _KEY.charCodeAt(i%_KEY.length));
-      pending = JSON.parse(tmp);
-    }
-  }catch(e){ pending = []; }
-  pending.push(ref);
-  var plain = JSON.stringify(pending);
-  var enc = xorEncode(plain);
-  localStorage.setItem('erenref_pending', enc);
-
-  /* ── GitHub'a push ── */
-  await tryPushToGitHub(ref);
-
-  if(btn){ btn.disabled=false; btn.textContent='Referansı Gönder'; }
-
-  /* ── Başarı ekranı ── */
-  document.getElementById('ref-form').style.display = 'none';
-  var succ = document.getElementById('ref-success');
-  succ.style.display = 'block';
-  var now = new Date(ref.date);
-  var dateDisplay = now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
-  var timeDisplay = now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-  var tsEl = document.getElementById('ref-success-ts');
-  if(tsEl) tsEl.textContent = dateDisplay + ' · ' + timeDisplay;
-}
-
+/* ── HATA ── */
 function showErr(msg){
   var e = document.getElementById('r-err');
-  e.textContent = msg;
-  e.style.display = 'block';
+  e.textContent = msg; e.style.display = 'block';
   e.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+function clearErr(){
+  var e = document.getElementById('r-err');
+  e.style.display = 'none'; e.textContent = '';
+}
 
-/* ── GitHub'da aynı isimde bekleyen/onaylı var mı kontrol et ── */
-async function checkDuplicatesOnGH(name){
+/* ── GİTHUB CONFIG ── */
+function getGHCfg(){
+  var keys = ['erenref_gh','erenref_ghcfg','erensite_gh'];
+  for(var i = 0; i < keys.length; i++){
+    try{
+      var s = localStorage.getItem(keys[i]);
+      if(s){ var g = JSON.parse(s); if(g && g.token) return g; }
+    }catch(e){}
+  }
+  return null;
+}
+
+/* ── DUPLICATE KONTROL ── */
+async function checkDuplicates(name){
   var result = {count:0, ids:[]};
   try{
-    var cfg = localStorage.getItem('erenref_ghcfg') || localStorage.getItem('erensite_gh');
-    if(!cfg) return result;
-    var g = JSON.parse(cfg);
-    if(!g.token || !g.user || !g.repo) return result;
-    var nameNorm = name.trim().toLowerCase();
+    var g = getGHCfg();
+    if(!g) return result;
+    var repo = g.repo || '__References__';
+    var norm = name.trim().toLowerCase();
+    var headers = {'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'};
 
-    /* pending dosyasını kontrol et */
     try{
-      var r = await fetch('https://api.github.com/repos/'+g.user+'/'+g.repo+'/contents/refs_pending.json',
-        {headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}});
+      var r = await fetch('https://api.github.com/repos/'+g.user+'/'+repo+'/contents/refs_pending.json',{headers:headers});
       if(r.ok){
         var d = await r.json();
-        var list = JSON.parse(atob(d.content.replace(/
-/g,'')));
-        var dups = list.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm; });
-        dups.forEach(function(p){ result.ids.push(p.id); result.count++; });
+        var list = JSON.parse(atob(d.content.replace(/\n/g,'')));
+        list.filter(function(p){ return p.name.trim().toLowerCase()===norm; })
+            .forEach(function(p){ result.ids.push(p.id); result.count++; });
       }
     }catch(e){}
 
-    /* site_data.json'daki onaylıları da kontrol et */
     try{
-      var r2 = await fetch('https://raw.githubusercontent.com/'+g.user+'/'+g.repo+'/main/site_data.json?_='+Date.now());
+      var r2 = await fetch('https://raw.githubusercontent.com/'+g.user+'/'+repo+'/main/approved_refs.json?_='+Date.now());
       if(r2.ok){
-        var sd = await r2.json();
-        var approved = sd.references || [];
-        var adups = approved.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm; });
-        adups.forEach(function(p){ result.ids.push(p.id); result.count++; });
+        var ap = await r2.json();
+        if(Array.isArray(ap)){
+          ap.filter(function(p){ return p.name.trim().toLowerCase()===norm; })
+            .forEach(function(p){ result.ids.push(p.id); result.count++; });
+        }
       }
     }catch(e){}
   }catch(e){}
   return result;
 }
 
-/* ── GitHub'a push ── */
-async function tryPushToGitHub(ref){
+/* ── GITHUB PUSH ── */
+async function pushToGitHub(ref){
   try{
-    var cfg = localStorage.getItem('erenref_ghcfg') || localStorage.getItem('erensite_gh');
-    if(!cfg) return;
-    var g = JSON.parse(cfg);
-    if(!g.token || !g.user || !g.repo) return;
+    var g = getGHCfg();
+    if(!g || !g.token) return;
+    var repo = g.repo || '__References__';
+    var url = 'https://api.github.com/repos/'+g.user+'/'+repo+'/contents/refs_pending.json';
+    var headers = {'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
 
-    var fileUrl = 'https://api.github.com/repos/'+g.user+'/'+g.repo+'/contents/refs_pending.json';
-    var existing = [];
-    var sha = null;
+    var existing = []; var sha = null;
     try{
-      var r = await fetch(fileUrl,{headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}});
-      if(r.ok){
-        var d = await r.json();
-        sha = d.sha;
-        existing = JSON.parse(atob(d.content.replace(/
-/g,'')));
-      }
+      var r = await fetch(url,{headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}});
+      if(r.ok){ var d = await r.json(); sha = d.sha; existing = JSON.parse(atob(d.content.replace(/\n/g,''))); }
     }catch(e){}
 
     existing.push(ref);
     var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))));
-    var body = {message:'New ref from '+ref.name+(ref.isDuplicate?' [DUPLICATE x'+ref.dupCount+']':''),content:b64,branch:'main'};
+    var body = {message:'New ref from '+ref.name+(ref.isDuplicate?' [DUPLICATE x'+ref.dupCount+']':''), content:b64, branch:'main'};
     if(sha) body.sha = sha;
-    await fetch(fileUrl,{method:'PUT',headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-  }catch(e){}
+    await fetch(url,{method:'PUT',headers:headers,body:JSON.stringify(body)});
+  }catch(e){ console.warn('GH push failed:',e); }
+}
+
+/* ── GÖNDER ── */
+async function submitRef(){
+  clearErr();
+  var btn     = document.getElementById('r-submit');
+  var name    = document.getElementById('r-name').value.trim();
+  var title   = document.getElementById('r-title').value.trim();
+  var company = document.getElementById('r-company').value.trim();
+  var phone   = document.getElementById('r-phone').value.trim();
+  var comment = document.getElementById('r-comment').value.trim();
+  var consent = document.getElementById('r-consent').checked;
+  var extra   = document.getElementById('ctx-extra').value.trim();
+
+  var ctx = _ctx;
+  var ctxDetail = '';
+  if(ctx === '__other__'){
+    ctx = extra || 'Diğer';
+  } else if(ctx === 'Eğitim / Ders' || ctx === 'Staj'){
+    ctxDetail = extra;
+  }
+
+  if(!name)    return showErr('Ad Soyad zorunludur.');
+  if(!title)   return showErr('Pozisyon / Unvan zorunludur.');
+  if(!_ctx)    return showErr('Lütfen bir ilişki bağlamı seçin.');
+  if(!_star)   return showErr('Lütfen bir puan verin.');
+  if(!comment) return showErr('Lütfen yorum yazın.');
+  if(!consent) return showErr('Yayımlanma onayını işaretlemeniz gerekmektedir.');
+
+  btn.disabled = true;
+  btn.textContent = 'Gönderiliyor...';
+
+  var ref = {
+    id:        'ref_' + Date.now(),
+    date:      new Date().toISOString(),
+    name:      name,
+    title:     title,
+    company:   company,
+    phone:     phone,
+    ctx:       ctx,
+    ctxDetail: ctxDetail,
+    star:      _star,
+    comment:   comment,
+    status:    'pending'
+  };
+
+  var dupInfo = await checkDuplicates(name);
+  if(dupInfo.count > 0){
+    ref.isDuplicate = true;
+    ref.duplicateOf = dupInfo.ids;
+    ref.dupCount    = dupInfo.count;
+  }
+
+  await pushToGitHub(ref);
+
+  btn.disabled = false;
+  btn.textContent = 'Referansı Gönder';
+
+  document.getElementById('ref-form').style.display = 'none';
+  document.getElementById('ref-success').style.display = 'block';
+  var now = new Date(ref.date);
+  var tsEl = document.getElementById('ref-ts');
+  if(tsEl) tsEl.textContent =
+    now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})
+    + ' · ' +
+    now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
 }
 </script>
 </body>

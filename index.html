@@ -120,8 +120,7 @@ body{padding-top:88px}
 
 <div class="nw">
   <nav>
-    <a class="nb" href="index.html">Eren Akçam</a>
-    <a class="nb-back" href="index.html">← Portfolyo'ya Dön</a>
+    <span class="nb">Eren Akçam</span>
   </nav>
 </div>
 
@@ -256,7 +255,7 @@ body{padding-top:88px}
 
     <div class="fld">
       <label class="flbl">Yorum / Referans Metni <span>*</span></label>
-      <textarea class="finp" id="r-comment" rows="5" placeholder="Eren'i nasıl tanıdınız, birlikte ne yaptınız, çalışma tarzını nasıl değerlendiriyorsunuz? Portfolyoda yazmayan, bizzat gözlemlediğiniz bir şeyi de ekleyebilirsiniz."></textarea>
+      <textarea class="finp" id="r-comment" rows="8" placeholder="Eren'i nasıl tanıdınız, birlikte ne yaptınız, çalışma tarzını nasıl değerlendiriyorsunuz? Portfolyoda yazmayan, bizzat gözlemlediğiniz bir şeyi de ekleyebilirsiniz. İstediğiniz kadar uzun yazabilirsiniz."></textarea>
     </div>
 
     <div class="form-section-title">Onay</div>
@@ -287,8 +286,7 @@ body{padding-top:88px}
 </div><!-- /body-wrap -->
 
 <div class="ft">
-  <span class="ftl">Eren Akçam · Portfolio</span>
-  <a class="fte" href="index.html">← Portfolyo'ya Dön</a>
+  <span class="ftl">Eren Akçam · Referans Formu</span>
 </div>
 
 <script>
@@ -337,7 +335,8 @@ function xorEncode(str){
 }
 
 /* ── Submit ── */
-function submitRef(){
+async function submitRef(){
+  var btn = document.getElementById('r-submit');
   var name    = document.getElementById('r-name').value.trim();
   var title   = document.getElementById('r-title').value.trim();
   var company = document.getElementById('r-company').value.trim();
@@ -358,6 +357,8 @@ function submitRef(){
   if(!comment){ return showErr('Lütfen yorum yazın.'); }
   if(!consent){ return showErr('Yayımlanma onayını işaretlemeniz gerekmektedir.'); }
 
+  if(btn){ btn.disabled=true; btn.textContent='Gönderiliyor...'; }
+
   var ref = {
     id: 'ref_' + Date.now(),
     date: new Date().toISOString(),
@@ -372,7 +373,16 @@ function submitRef(){
     status: 'pending'
   };
 
-  /* Mevcut bekleyen referansları oku */
+  /* ── Duplicate tespiti: GitHub'dan güncel listeyi çek ── */
+  var dupInfo = await checkDuplicatesOnGH(name);
+  if(dupInfo.count > 0){
+    /* Duplicate bilgisini ref nesnesine işle */
+    ref.duplicateOf = dupInfo.ids;
+    ref.isDuplicate = true;
+    ref.dupCount = dupInfo.count; /* kaç önceki giriş var */
+  }
+
+  /* ── Şifreli localStorage yedeği ── */
   var pending = [];
   try{
     var raw = localStorage.getItem('erenref_pending');
@@ -383,27 +393,20 @@ function submitRef(){
       pending = JSON.parse(tmp);
     }
   }catch(e){ pending = []; }
-
-  /* Aynı isimde başka giriş var mı? Varsa flag ekle */
-  var nameNorm = name.trim().toLowerCase();
-  var duplicateIds = pending.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm; }).map(function(p){ return p.id; });
-  if(duplicateIds.length) ref.duplicateOf = duplicateIds;
-
   pending.push(ref);
-
-  /* Şifrele ve kaydet */
   var plain = JSON.stringify(pending);
   var enc = xorEncode(plain);
   localStorage.setItem('erenref_pending', enc);
 
-  /* GitHub'a da gönder (opsiyonel — storage key ayarı yoksa sadece localStorage'da kalır) */
-  tryPushToGitHub(ref);
+  /* ── GitHub'a push ── */
+  await tryPushToGitHub(ref);
 
-  /* Başarı ekranı */
+  if(btn){ btn.disabled=false; btn.textContent='Referansı Gönder'; }
+
+  /* ── Başarı ekranı ── */
   document.getElementById('ref-form').style.display = 'none';
   var succ = document.getElementById('ref-success');
   succ.style.display = 'block';
-  /* Tarih/saat göster */
   var now = new Date(ref.date);
   var dateDisplay = now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
   var timeDisplay = now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
@@ -418,10 +421,47 @@ function showErr(msg){
   e.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-/* ── GitHub'a push (opsiyonel, ayar varsa) ── */
+/* ── GitHub'da aynı isimde bekleyen/onaylı var mı kontrol et ── */
+async function checkDuplicatesOnGH(name){
+  var result = {count:0, ids:[]};
+  try{
+    var cfg = localStorage.getItem('erenref_ghcfg') || localStorage.getItem('erensite_gh');
+    if(!cfg) return result;
+    var g = JSON.parse(cfg);
+    if(!g.token || !g.user || !g.repo) return result;
+    var nameNorm = name.trim().toLowerCase();
+
+    /* pending dosyasını kontrol et */
+    try{
+      var r = await fetch('https://api.github.com/repos/'+g.user+'/'+g.repo+'/contents/refs_pending.json',
+        {headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}});
+      if(r.ok){
+        var d = await r.json();
+        var list = JSON.parse(atob(d.content.replace(/
+/g,'')));
+        var dups = list.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm; });
+        dups.forEach(function(p){ result.ids.push(p.id); result.count++; });
+      }
+    }catch(e){}
+
+    /* site_data.json'daki onaylıları da kontrol et */
+    try{
+      var r2 = await fetch('https://raw.githubusercontent.com/'+g.user+'/'+g.repo+'/main/site_data.json?_='+Date.now());
+      if(r2.ok){
+        var sd = await r2.json();
+        var approved = sd.references || [];
+        var adups = approved.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm; });
+        adups.forEach(function(p){ result.ids.push(p.id); result.count++; });
+      }
+    }catch(e){}
+  }catch(e){}
+  return result;
+}
+
+/* ── GitHub'a push ── */
 async function tryPushToGitHub(ref){
   try{
-    var cfg = localStorage.getItem('erenref_ghcfg');
+    var cfg = localStorage.getItem('erenref_ghcfg') || localStorage.getItem('erensite_gh');
     if(!cfg) return;
     var g = JSON.parse(cfg);
     if(!g.token || !g.user || !g.repo) return;
@@ -434,17 +474,14 @@ async function tryPushToGitHub(ref){
       if(r.ok){
         var d = await r.json();
         sha = d.sha;
-        var raw = atob(d.content.replace(/\n/g,''));
-        existing = JSON.parse(raw);
+        existing = JSON.parse(atob(d.content.replace(/
+/g,'')));
       }
     }catch(e){}
 
-    var nameNorm2 = ref.name.trim().toLowerCase();
-    var dupIds2 = existing.filter(function(p){ return p.name.trim().toLowerCase()===nameNorm2; }).map(function(p){ return p.id; });
-    if(dupIds2.length && !ref.duplicateOf) ref.duplicateOf = dupIds2;
     existing.push(ref);
     var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))));
-    var body = {message:'New reference from '+ref.name,content:b64,branch:'main'};
+    var body = {message:'New ref from '+ref.name+(ref.isDuplicate?' [DUPLICATE x'+ref.dupCount+']':''),content:b64,branch:'main'};
     if(sha) body.sha = sha;
     await fetch(fileUrl,{method:'PUT',headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
   }catch(e){}

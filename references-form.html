@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Referans Bırak — Eren Akçam</title>
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ════════════════════════════════
+   RESET & ROOT — ana siteyle aynı token'lar
+════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nh:72px;--np:5px;
+  --g:#7ab898;
+  --gd:#2d5a3d;
+  --gl:#a8c9b8;
+  --gp:#dce8e0;
+  --bej:#e4ede8;
+  --bl:#f2f7f4;
+  --bm:#c4d8cc;
+  --bd:#9ab8a8;
+  --blk:#18201c;
+  --txt:#1e2e28;
+  --tm:#4a6a58;
+  --mu:#6b7a6e;
+}
+html,body{min-height:100%;background:var(--bej);color:var(--txt);font-family:'Raleway',sans-serif;overflow-x:hidden}
+::selection{background:var(--gl);color:var(--blk)}
+body{padding-top:calc(var(--nh) + var(--np)*2 + 4px)}
+
+/* ════════════════════════════════
+   NAV — birebir ana site
+════════════════════════════════ */
+.nw{position:fixed;top:0;left:0;right:0;z-index:999;padding:var(--np) 16px;background:var(--bej)}
+nav{background:var(--blk);border-radius:12px;height:var(--nh);display:flex;align-items:center;padding:0 24px;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-brand{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1rem;color:var(--bl);text-decoration:none;white-space:nowrap;flex-shrink:0}
+.nav-brand:hover{color:var(--gl)}
+.nav-sep{width:1px;height:24px;background:rgba(255,255,255,.12);flex-shrink:0}
+.nav-page{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gl);flex:1}
+.nav-back{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:22px;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;background:var(--gl);color:var(--blk);text-decoration:none;transition:background .15s;border:none;cursor:pointer;flex-shrink:0}
+.nav-back:hover{background:var(--g)}
+.nav-back svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ════════════════════════════════
+   HERO STRIP — ana sitenin .pb stili
+════════════════════════════════ */
+.page-hero{
+  margin:0 16px 0;
+  background:var(--gd);
+  border-radius:18px 18px 0 0;
+  padding:44px 52px 32px;
+  position:relative;overflow:hidden;
+}
+.page-hero::after{content:'';position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:var(--g);opacity:.12;pointer-events:none}
+.page-hero h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2.6rem,4.5vw,4.8rem);color:var(--bl);line-height:1;position:relative;z-index:1}
+.page-hero-sub{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gl);margin-top:8px;position:relative;z-index:1}
+
+/* ════════════════════════════════
+   MAIN BODY — ana sitenin .pbd stili
+════════════════════════════════ */
+.page-body{
+  margin:0 16px 16px;
+  background:var(--bl);
+  border-radius:0 0 18px 18px;
+  border:1px solid var(--bm);border-top:none;
+  padding:52px 52px 68px;
+}
+
+/* ════════════════════════════════
+   FORM LAYOUT
+════════════════════════════════ */
+.form-wrap{max-width:680px;margin:0 auto}
+
+/* Section başlıkları — .skh / .tlh gibi */
+.fsec-title{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+  font-size:1.25rem;color:#4d7040;
+  padding-bottom:10px;border-bottom:2px solid var(--g);
+  margin-top:44px;margin-bottom:24px;
+}
+.fsec-title:first-child{margin-top:0}
+
+/* Field row */
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld{margin-bottom:16px}
+.flbl{
+  display:block;font-size:.52rem;font-weight:700;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--gd);margin-bottom:6px;
+}
+.flbl .req{color:#b0402e}
+
+/* Inputs */
+.finp{
+  width:100%;padding:11px 14px;
+  border-radius:9px;border:1.5px solid var(--bm);
+  background:var(--bej);
+  font-family:'Raleway',sans-serif;font-size:.84rem;color:var(--txt);
+  outline:none;resize:none;
+  transition:border-color .18s,background .18s,box-shadow .18s;
+}
+.finp:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 3px rgba(122,184,152,.14)}
+.finp::placeholder{color:var(--bd)}
+.finp.has-err{border-color:#c0392b;background:#fff8f7}
+select.finp{
+  cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ab8a8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;
+}
+
+/* Inline error */
+.ferr{font-size:.6rem;color:#b0402e;margin-top:5px;display:none}
+.ferr.show{display:block}
+
+/* ════════════════════════════════
+   STAR RATING
+════════════════════════════════ */
+.stars-wrap{display:flex;flex-direction:row-reverse;gap:5px;margin-top:3px}
+.stars-wrap input[type=radio]{display:none}
+.stars-wrap label{
+  font-size:2rem;cursor:pointer;color:var(--bm);
+  transition:color .12s,transform .1s;line-height:1;
+}
+.stars-wrap label:hover,
+.stars-wrap label:hover~label,
+.stars-wrap input:checked~label{color:#d4920a}
+.stars-wrap label:hover{transform:scale(1.15)}
+.star-caption{font-size:.6rem;color:var(--mu);margin-top:6px;min-height:16px;font-weight:500}
+
+/* ════════════════════════════════
+   PHOTO UPLOAD
+════════════════════════════════ */
+.photo-zone{
+  border:2px dashed var(--bm);border-radius:12px;
+  background:var(--bej);padding:24px;
+  display:flex;align-items:center;gap:20px;
+  cursor:pointer;transition:border-color .18s,background .18s;
+  position:relative;overflow:hidden;
+}
+.photo-zone:hover{border-color:var(--g);background:#edf5f0}
+.photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.photo-preview{
+  width:70px;height:70px;border-radius:50%;border:2.5px solid var(--bm);
+  background:var(--blk);flex-shrink:0;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;
+  color:var(--gl);letter-spacing:.05em;transition:border-color .18s;
+  position:relative;z-index:1;
+}
+.photo-preview img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:none}
+.photo-preview .ph-initials{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.photo-zone-text{flex:1;position:relative;z-index:1}
+.photo-zone-title{font-size:.78rem;font-weight:700;color:var(--txt);margin-bottom:3px}
+.photo-zone-sub{font-size:.62rem;color:var(--mu);line-height:1.5}
+.photo-zone-sub strong{color:var(--gd)}
+.photo-zone-icon{color:var(--bd);flex-shrink:0;position:relative;z-index:1}
+.photo-zone-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}
+.photo-zone.loaded{border-color:var(--g);border-style:solid}
+.photo-zone.loaded .photo-preview{border-color:var(--g)}
+.photo-remove{
+  position:absolute;top:8px;right:8px;z-index:5;
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(176,64,46,.85);border:none;cursor:pointer;
+  display:none;align-items:center;justify-content:center;color:#fff;font-size:.65rem;font-weight:700;
+}
+.photo-zone.loaded .photo-remove{display:flex}
+.photo-status{font-size:.58rem;margin-top:5px;color:var(--mu)}
+
+/* ════════════════════════════════
+   CHAR COUNTER
+════════════════════════════════ */
+.char-counter{font-size:.55rem;color:var(--bd);text-align:right;margin-top:3px}
+.char-counter.warn{color:#d4920a}
+
+/* ════════════════════════════════
+   OPTIONAL TOGGLE
+════════════════════════════════ */
+.opt-toggle{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 0;cursor:pointer;user-select:none;
+  border-top:1px solid var(--bm);margin-top:4px;
+}
+.opt-toggle input[type=checkbox]{display:none}
+.toggle-track{
+  width:38px;height:21px;border-radius:11px;background:var(--bm);
+  position:relative;transition:background .2s;flex-shrink:0;
+}
+.opt-toggle input:checked+.toggle-track{background:var(--g)}
+.toggle-thumb{
+  position:absolute;top:2px;left:2px;
+  width:17px;height:17px;border-radius:50%;background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.25);
+  transition:transform .2s;
+}
+.opt-toggle input:checked+.toggle-track .toggle-thumb{transform:translateX(17px)}
+.opt-toggle-label{font-size:.72rem;color:var(--tm);font-weight:500}
+
+/* ════════════════════════════════
+   SUBMIT BUTTON — .bg stili
+════════════════════════════════ */
+.submit-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:15px 28px;border-radius:50px;
+  font-family:'Raleway',sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  background:var(--gd);color:var(--bl);border:none;cursor:pointer;
+  margin-top:10px;
+  transition:background .2s,transform .1s,box-shadow .2s;
+  box-shadow:0 4px 18px rgba(45,90,61,.3);
+}
+.submit-btn:hover{background:var(--blk);transform:translateY(-1px);box-shadow:0 8px 28px rgba(24,32,28,.28)}
+.submit-btn:active{transform:none}
+.submit-btn:disabled{background:var(--bm);color:var(--bl);cursor:not-allowed;transform:none;box-shadow:none}
+.submit-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.spin{
+  width:16px;height:16px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);border-top-color:#fff;
+  animation:spin .7s linear infinite;flex-shrink:0;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ════════════════════════════════
+   PROGRESS BAR (upload)
+════════════════════════════════ */
+.upload-progress{
+  height:3px;border-radius:2px;background:var(--bm);overflow:hidden;margin-top:6px;display:none;
+}
+.upload-progress-fill{height:100%;background:linear-gradient(90deg,var(--gd),var(--g));width:0%;transition:width .3s}
+
+/* ════════════════════════════════
+   GLOBAL ERROR BOX
+════════════════════════════════ */
+.err-box{
+  background:#fff5f5;border:1.5px solid #f5c6c6;border-radius:10px;
+  padding:12px 16px;font-size:.72rem;color:#b0402e;margin-bottom:18px;display:none;
+  line-height:1.6;
+}
+.err-box.show{display:block}
+
+/* ════════════════════════════════
+   SUCCESS STATE
+════════════════════════════════ */
+.success-card{
+  background:var(--bl);border-radius:18px;padding:64px 40px;
+  text-align:center;border:1px solid var(--bm);display:none;
+  margin:0 16px 16px;
+}
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gl),var(--gp));
+  display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
+  box-shadow:0 4px 20px rgba(45,90,61,.22);
+}
+.success-icon svg{width:30px;height:30px;fill:none;stroke:var(--gd);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.success-h{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:2rem;color:var(--blk);margin-bottom:10px}
+.success-p{font-size:.78rem;color:var(--mu);line-height:1.8;margin-bottom:28px}
+.success-back{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 24px;border-radius:50px;
+  font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--gd);color:var(--bl);text-decoration:none;
+  transition:background .2s;border:none;cursor:pointer;
+}
+.success-back:hover{background:var(--blk)}
+
+/* ════════════════════════════════
+   FOOTER — ana sitenin .pf stili
+════════════════════════════════ */
+.page-footer{
+  margin:0 16px 5px;background:var(--blk);border-radius:12px;
+  padding:16px 32px;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.pfl{font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;color:var(--bd)}
+.pfe{font-size:.76rem;color:var(--gl);text-decoration:none;font-weight:500}
+.pfe:hover{color:var(--bl)}
+
+/* ════════════════════════════════
+   MOBILE
+════════════════════════════════ */
+@media(max-width:700px){
+  .page-hero{padding:30px 24px 22px;margin:0 10px 0;border-radius:14px 14px 0 0}
+  .page-hero h1{font-size:2.4rem}
+  .page-body{margin:0 10px 10px;padding:28px 20px 40px}
+  .page-footer{margin:0 10px 5px;padding:14px 20px}
+  .fr2{grid-template-columns:1fr}
+  .stars-wrap label{font-size:1.7rem}
+  .success-card{margin:0 10px 10px;padding:44px 22px}
+  nav{padding:0 14px;gap:8px}
+}
+@media(max-width:420px){
+  .page-hero h1{font-size:2rem}
+  .photo-zone{flex-direction:column;text-align:center;gap:12px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── NAV ── -->
+<div class="nw">
+  <nav>
+    <a class="nav-brand" href="https://erenakcam.github.io">Eren Akçam</a>
+    <div class="nav-sep"></div>
+    <span class="nav-page">Referans Formu</span>
+    <a class="nav-back" href="https://erenakcam.github.io">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Portfolio
+    </a>
+  </nav>
+</div>
+
+<!-- ── FORM WRAPPER (gizlenir, success gösterilir) ── -->
+<div id="main-form-wrap">
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <h1>References</h1>
+    <div class="page-hero-sub">Deneyiminizi paylaşın</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="page-body">
+    <div class="form-wrap">
+
+      <div class="err-box" id="err-box"></div>
+
+      <!-- ── 1. KİŞİSEL BİLGİLER ── -->
+      <div class="fsec-title">Kişisel Bilgiler</div>
+
+      <div class="fr2">
+        <div class="fld">
+          <label class="flbl" for="rf-name">İsim Soyisim <span class="req">*</span></label>
+          <input class="finp" id="rf-name" type="text" placeholder="Adınız Soyadınız" autocomplete="name" maxlength="80"/>
+          <div class="ferr" id="e-name">İsim zorunludur.</div>
+        </div>
+        <div class="fld">
+          <label class="flbl" for="rf-title">Ünvan / Pozisyon <span class="req">*</span></label>
+          <input class="finp" id="rf-title" type="text" placeholder="Yazılım Mühendisi, Müdür..." maxlength="80"/>
+          <div class="ferr" id="e-title">Ünvan zorunludur.</div>
+        </div>
+      </div>
+
+      <div class="fld">
+        <label class="flbl" for="rf-company">Şirket / Kurum</label>
+        <input class="finp" id="rf-company" type="text" placeholder="Çalıştığınız yer (isteğe bağlı)" autocomplete="organization" maxlength="80"/>
+      </div>
+
+      <div class="fld">
+        <label class="flbl" for="rf-relation">Beni Nereden Tanıyorsunuz? <span class="req">*</span></label>
+        <select class="finp" id="rf-relation">
+          <option value="">— Seçiniz —</option>
+          <option value="İş Arkadaşı">İş Arkadaşı</option>
+          <option value="Müşteri / İşveren">Müşteri / İşveren</option>
+          <option value="Öğretmen / Danışman">Öğretmen / Danışman</option>
+          <option value="Okul / Akademi">Okul / Akademi</option>
+          <option value="Freelance Proje">Freelance Proje</option>
+          <option value="Sosyal Medya">Sosyal Medya</option>
+          <option value="Ortak Proje">Ortak Proje</option>
+          <option value="Diğer">Diğer</option>
+        </select>
+        <div class="ferr" id="e-relation">Lütfen bir seçenek seçin.</div>
+      </div>
+
+      <!-- ── PROFİL FOTOĞRAFI ── -->
+      <div class="fsec-title">Profil Fotoğrafı</div>
+
+      <div class="photo-zone" id="photo-zone">
+        <input type="file" id="photo-input" accept="image/*" onchange="handlePhoto(this)"/>
+        <div class="photo-preview" id="photo-preview">
+          <img id="photo-img" src="" alt=""/>
+          <span class="ph-initials" id="ph-initials">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </span>
+        </div>
+        <div class="photo-zone-text">
+          <div class="photo-zone-title">Fotoğraf Ekle <span style="font-size:.58rem;font-weight:400;color:var(--mu)">(isteğe bağlı)</span></div>
+          <div class="photo-zone-sub">Referansınıza profil fotoğrafı ekleyin.<br/><strong>JPG, PNG, WEBP</strong> — max <strong>2 MB</strong></div>
+          <div class="upload-progress" id="upload-progress"><div class="upload-progress-fill" id="upload-fill"></div></div>
+          <div class="photo-status" id="photo-status"></div>
+        </div>
+        <div class="photo-zone-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <button type="button" class="photo-remove" id="photo-remove" onclick="removePhoto(event)" title="Fotoğrafı kaldır">✕</button>
+      </div>
+
+      <!-- ── DEĞERLENDİRME ── -->
+      <div class="fsec-title">Değerlendirme</div>
+
+      <div class="fld">
+        <label class="flbl">Genel Puan <span class="req">*</span></label>
+        <div class="stars-wrap" id="stars-wrap">
+          <input type="radio" name="rating" id="s5" value="5"/>
+          <label for="s5" title="5 – Mükemmel">★</label>
+          <input type="radio" name="rating" id="s4" value="4"/>
+          <label for="s4" title="4 – Çok İyi">★</label>
+          <input type="radio" name="rating" id="s3" value="3"/>
+          <label for="s3" title="3 – İyi">★</label>
+          <input type="radio" name="rating" id="s2" value="2"/>
+          <label for="s2" title="2 – Orta">★</label>
+          <input type="radio" name="rating" id="s1" value="1"/>
+          <label for="s1" title="1 – Zayıf">★</label>
+        </div>
+        <div class="star-caption" id="star-caption">Bir yıldız seçin</div>
+        <div class="ferr" id="e-rating">Lütfen bir puan verin.</div>
+      </div>
+
+      <div class="fld">
+        <label class="flbl" for="rf-opinion">Görüşünüz <span class="req">*</span></label>
+        <textarea class="finp" id="rf-opinion" rows="6"
+          placeholder="Benimle çalışma deneyiminizi, güçlü yönlerimi ve genel izleniminizi paylaşın..."
+          maxlength="1200" oninput="updateCharCount(this,'opinion-count',1200)"></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+          <div class="ferr" id="e-opinion" style="margin-top:0">En az 20 karakter giriniz.</div>
+          <div class="char-counter" id="opinion-count">0 / 1200</div>
+        </div>
+      </div>
+
+      <!-- ── İSTEĞE BAĞLI: İLETİŞİM ── -->
+      <div class="fsec-title">İletişim Bilgileri</div>
+
+      <label class="opt-toggle" for="show-contact">
+        <input type="checkbox" id="show-contact" onchange="toggleSection('contact-fields',this.checked)"/>
+        <div class="toggle-track"><div class="toggle-thumb"></div></div>
+        <span class="opt-toggle-label">İletişim bilgilerimi paylaşmak istiyorum (isteğe bağlı)</span>
+      </label>
+
+      <div id="contact-fields" style="display:none;padding-top:16px">
+        <div class="fr2">
+          <div class="fld">
+            <label class="flbl" for="rf-email">E-Posta</label>
+            <input class="finp" id="rf-email" type="email" placeholder="ornek@eposta.com" autocomplete="email"/>
+          </div>
+          <div class="fld">
+            <label class="flbl" for="rf-phone">Telefon</label>
+            <input class="finp" id="rf-phone" type="tel" placeholder="+90 5xx xxx xx xx" autocomplete="tel"/>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl" for="rf-linkedin">LinkedIn / Web Sitesi</label>
+          <input class="finp" id="rf-linkedin" type="url" placeholder="https://linkedin.com/in/..."/>
+        </div>
+      </div>
+
+      <!-- ── SUBMIT ── -->
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Referansı Gönder
+      </button>
+
+    </div><!-- /form-wrap -->
+  </div><!-- /page-body -->
+</div><!-- /main-form-wrap -->
+
+<!-- ── SUCCESS ── -->
+<div class="success-card" id="success-card">
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <div class="success-h">Teşekkür Ederim!</div>
+  <p class="success-p">
+    Referansınız başarıyla iletildi.<br/>
+    İnceleme aşamasından sonra portfolyo siteme ekleyeceğim.
+  </p>
+  <a class="success-back" href="https://erenakcam.github.io">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Portfolio'ya Dön
+  </a>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="page-footer">
+  <span class="pfl">Portfolio</span>
+  <a class="pfe" href="https://erenakcam.github.io">erenakcam.github.io</a>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   KURULUM — Bu 3 değişkeni doldurun:
+
+   TOKEN NASIL ALINIR?
+   1. github.com → sağ üst avatar → Settings
+   2. Sol menü en alta → Developer settings
+   3. Personal access tokens → Fine-grained tokens → Generate new token
+   4. Token name: "References Form"
+   5. Repository access: Only select repositories → "References" reposunu seç
+   6. Repository permissions → Contents → Read and write
+   7. Generate token → kopyala → aşağıya yapıştır
+══════════════════════════════════════════════════════════════ */
+var GH_TOKEN  = 'BURAYA_TOKENINI_YAPISTIR';   // github_pat_xxx...
+var GH_USER   = 'erenakcam';                   // GitHub kullanıcı adın
+var GH_REPO   = 'References';                  // Repo adı (büyük/küçük harf önemli)
+
+/* ══════════════════════════════════════════════════════════════ */
+
+var STAR_LABELS=['','Zayıf','Orta','İyi','Çok İyi','Mükemmel'];
+var _photoFile=null, _photoPath='';
+
+/* ── STAR RATING ── */
+document.querySelectorAll('.stars-wrap input[type=radio]').forEach(function(inp){
+  inp.addEventListener('change',function(){
+    var v=parseInt(this.value);
+    document.getElementById('star-caption').textContent=v+' / 5 — '+STAR_LABELS[v];
+    hide('e-rating');
+  });
+});
+
+/* ── CHAR COUNTER ── */
+function updateCharCount(el,counterId,max){
+  var len=el.value.length;
+  var el2=document.getElementById(counterId);
+  if(!el2)return;
+  el2.textContent=len+' / '+max;
+  el2.classList.toggle('warn',len>max*0.85);
+}
+
+/* ── TOGGLE SECTION ── */
+function toggleSection(id,show){
+  var el=document.getElementById(id);
+  if(el)el.style.display=show?'block':'none';
+}
+
+/* ── INITIALS in photo preview ── */
+document.getElementById('rf-name').addEventListener('input',function(){
+  updateInitials(this.value);
+});
+function updateInitials(name){
+  var parts=(name||'').trim().split(' ').filter(Boolean);
+  var init=parts.map(function(p){return p[0]||'';}).join('').slice(0,2).toUpperCase();
+  var el=document.getElementById('ph-initials');
+  if(el&&!_photoFile){
+    el.innerHTML=init||'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+  }
+}
+
+/* ── PHOTO HANDLING ── */
+function handlePhoto(input){
+  var file=input.files[0];
+  if(!file)return;
+  if(file.size>2*1024*1024){
+    setStatus('photo-status','⚠ Dosya 2 MB\'dan büyük olamaz.','#b0402e');
+    input.value='';return;
+  }
+  if(!file.type.startsWith('image/')){
+    setStatus('photo-status','⚠ Sadece resim dosyası yüklenebilir.','#b0402e');
+    input.value='';return;
+  }
+  _photoFile=file;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var img=document.getElementById('photo-img');
+    var ini=document.getElementById('ph-initials');
+    img.src=e.target.result;
+    img.style.display='block';
+    if(ini)ini.style.display='none';
+    document.getElementById('photo-zone').classList.add('loaded');
+    setStatus('photo-status','✓ '+file.name+' seçildi','var(--gd)');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto(e){
+  e.stopPropagation();e.preventDefault();
+  _photoFile=null;_photoPath='';
+  document.getElementById('photo-input').value='';
+  document.getElementById('photo-img').src='';
+  document.getElementById('photo-img').style.display='none';
+  var ini=document.getElementById('ph-initials');
+  if(ini){ini.style.display='flex';updateInitials(document.getElementById('rf-name').value);}
+  document.getElementById('photo-zone').classList.remove('loaded');
+  setStatus('photo-status','','');
+}
+
+/* ── UPLOAD PHOTO TO ASSETS ── */
+async function uploadPhoto(name){
+  if(!_photoFile)return null;
+  var ext=_photoFile.name.split('.').pop().toLowerCase()||'jpg';
+  var safeName=name.toLowerCase().replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').slice(0,30);
+  var path='assets/refs/'+Date.now()+'-'+safeName+'.'+ext;
+
+  // Progress animation
+  var prog=document.getElementById('upload-progress');
+  var fill=document.getElementById('upload-fill');
+  if(prog)prog.style.display='block';
+  animateProgress(fill,0,60,400);
+
+  var b64=await fileToB64(_photoFile);
+  animateProgress(fill,60,85,300);
+
+  try{
+    // SHA kontrolü (overwrite olmamalı ama yine de)
+    var sha=null;
+    try{
+      var chk=await ghApi('GET','https://api.github.com/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+path);
+      if(chk.ok){var d=await chk.json();sha=d.sha;}
+    }catch(e){}
+
+    var body={message:'Add reference photo: '+name,content:b64,branch:'main'};
+    if(sha)body.sha=sha;
+
+    var resp=await ghApi('PUT','https://api.github.com/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+path,body);
+    animateProgress(fill,85,100,200);
+
+    if(resp.ok){
+      setStatus('photo-status','✓ Fotoğraf yüklendi','var(--gd)');
+      if(prog)setTimeout(function(){prog.style.display='none';},800);
+      return 'https://raw.githubusercontent.com/'+GH_USER+'/'+GH_REPO+'/main/'+path;
+    }else{
+      var err=await resp.json();
+      setStatus('photo-status','⚠ Fotoğraf yüklenemedi: '+err.message,'#b0402e');
+      if(prog)prog.style.display='none';
+      return null;
+    }
+  }catch(e){
+    setStatus('photo-status','⚠ Bağlantı hatası','#b0402e');
+    if(prog)prog.style.display='none';
+    return null;
+  }
+}
+
+function animateProgress(el,from,to,dur){
+  if(!el)return;
+  var start=performance.now();
+  function step(now){
+    var t=Math.min((now-start)/dur,1);
+    el.style.width=(from+(to-from)*t)+'%';
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function fileToB64(file){
+  return new Promise(function(res,rej){
+    var r=new FileReader();
+    r.onload=function(e){res(e.target.result.split(',')[1]);};
+    r.onerror=rej;
+    r.readAsDataURL(file);
+  });
+}
+
+/* ── GITHUB API HELPER ── */
+function ghApi(method,url,body){
+  var opts={
+    method:method,
+    headers:{
+      'Authorization':'token '+GH_TOKEN,
+      'Accept':'application/vnd.github.v3+json',
+      'Content-Type':'application/json'
+    }
+  };
+  if(body)opts.body=JSON.stringify(body);
+  return fetch(url,opts);
+}
+
+/* ── VALIDATION ── */
+function validateForm(){
+  var ok=true;
+  function chk(id,errId,cond){
+    var el=document.getElementById(id);
+    if(cond){if(el)el.classList.add('has-err');show(errId);ok=false;}
+    else{if(el)el.classList.remove('has-err');hide(errId);}
+  }
+  chk('rf-name','e-name',!v('rf-name'));
+  chk('rf-title','e-title',!v('rf-title'));
+  chk('rf-relation','e-relation',!v('rf-relation'));
+  chk('rf-opinion','e-opinion',v('rf-opinion').length<20);
+  var rating=document.querySelector('.stars-wrap input[type=radio]:checked');
+  if(!rating){show('e-rating');ok=false;}else{hide('e-rating');}
+  return ok;
+}
+
+/* ── SUBMIT ── */
+async function submitForm(){
+  hide('err-box');
+  if(!validateForm()){
+    // Scroll to first error
+    var first=document.querySelector('.ferr.show,.has-err');
+    if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  if(!GH_TOKEN||GH_TOKEN==='BURAYA_TOKENINI_YAPISTIR'){
+    showErr('⚙️ Token ayarlanmamış. Dosyadaki GH_TOKEN değişkenini doldur ve tekrar yükle.');
+    return;
+  }
+
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>Gönderiliyor...';
+
+  var name=v('rf-name');
+  var now=new Date();
+
+  // 1. Fotoğraf varsa yükle
+  var photoUrl=null;
+  if(_photoFile){
+    setStatus('photo-status','⏳ Fotoğraf yükleniyor...','var(--mu)');
+    photoUrl=await uploadPhoto(name);
+  }
+
+  // 2. Referans verisini hazırla
+  var data={
+    name:       name,
+    title:      v('rf-title'),
+    company:    v('rf-company'),
+    relation:   v('rf-relation'),
+    rating:     parseInt(document.querySelector('.stars-wrap input[type=radio]:checked').value),
+    opinion:    v('rf-opinion'),
+    photo:      photoUrl||'',
+    contact:{
+      email:    v('rf-email'),
+      phone:    v('rf-phone'),
+      linkedin: v('rf-linkedin')
+    },
+    submittedAt: now.toISOString(),
+    dateLabel:   now.toLocaleDateString('tr-TR',{year:'numeric',month:'long',day:'numeric'})+
+                 ' '+now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
+  };
+
+  // 3. JSON dosyasını pending/ klasörüne yükle
+  var slug=name.toLowerCase().replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').slice(0,30);
+  var filename='pending/'+now.getTime()+'-'+slug+'.json';
+  var content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
+
+  try{
+    var resp=await ghApi('PUT',
+      'https://api.github.com/repos/'+GH_USER+'/'+GH_REPO+'/contents/'+filename,
+      {message:'New reference: '+name,content:content,branch:'main'}
+    );
+
+    if(resp.ok){
+      document.getElementById('main-form-wrap').style.display='none';
+      document.getElementById('success-card').style.display='block';
+      window.scrollTo(0,0);
+    }else{
+      var err=await resp.json();
+      var msg=err.message||'Bilinmeyen hata';
+      if(resp.status===401)msg='Token hatalı veya süresi dolmuş. GitHub\'dan yeni token alın.';
+      else if(resp.status===404)msg='Repo bulunamadı: "'+GH_USER+'/'+GH_REPO+'". Repo adını kontrol edin.';
+      showErr('Gönderilemedi: '+msg);
+      btn.disabled=false;
+      btn.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Tekrar Dene';
+    }
+  }catch(e){
+    showErr('Bağlantı hatası: '+e.message);
+    btn.disabled=false;
+    btn.innerHTML='Tekrar Dene';
+  }
+}
+
+/* ── UTILS ── */
+function v(id){var e=document.getElementById(id);return e?e.value.trim():'';}
+function show(id){var e=document.getElementById(id);if(e)e.classList.add('show');}
+function hide(id){var e=document.getElementById(id);if(e)e.classList.remove('show');}
+function showErr(msg){var e=document.getElementById('err-box');if(e){e.textContent=msg;e.classList.add('show');e.scrollIntoView({behavior:'smooth',block:'center'});}}
+function setStatus(id,msg,color){var e=document.getElementById(id);if(e){e.textContent=msg;e.style.color=color||'';}}
+
+/* ── INPUT CLEAR on focus ── */
+document.querySelectorAll('.finp').forEach(function(el){
+  el.addEventListener('focus',function(){this.classList.remove('has-err');});
+});
+</script>
+</body>
+</html>

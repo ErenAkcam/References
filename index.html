@@ -3,673 +3,446 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Referans Bırak — Eren Akçam</title>
-<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<title>Referans Bırak | Eren Akçam</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Barlow+Condensed:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --nh:72px;--np:5px;
   --g:#7ab898;--gd:#2d5a3d;--gl:#a8c9b8;--gp:#dce8e0;
   --bej:#e4ede8;--bl:#f2f7f4;--bm:#c4d8cc;--bd:#9ab8a8;
   --blk:#18201c;--txt:#1e2e28;--tm:#4a6a58;--mu:#6b7a6e;
 }
 html,body{min-height:100%;background:var(--bej);color:var(--txt);font-family:'Raleway',sans-serif;overflow-x:hidden}
 ::selection{background:var(--gl);color:var(--blk)}
-body{padding-top:calc(var(--nh) + var(--np)*2 + 4px)}
-
-/* NAV */
-.nw{position:fixed;top:0;left:0;right:0;z-index:999;padding:var(--np) 16px;background:var(--bej)}
-nav{background:var(--blk);border-radius:12px;height:var(--nh);display:flex;align-items:center;padding:0 24px;gap:12px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
-.nav-brand{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1rem;color:var(--bl);text-decoration:none;flex-shrink:0;transition:color .15s}
-.nav-brand:hover{color:var(--gl)}
-.nav-sep{width:1px;height:24px;background:rgba(255,255,255,.12);flex-shrink:0}
-.nav-label{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);flex:1}
-.nav-back{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:22px;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;background:var(--gl);color:var(--blk);text-decoration:none;transition:background .15s;border:none;cursor:pointer;flex-shrink:0}
-.nav-back:hover{background:var(--g)}
-.nav-back svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
-/* HERO — aynı .pb */
-.page-hero{margin:0 16px 0;background:var(--gd);border-radius:18px 18px 0 0;padding:44px 52px 32px;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;background:var(--g);opacity:.12;pointer-events:none}
-.page-hero h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2.6rem,4.5vw,4.8rem);color:var(--bl);line-height:1;position:relative;z-index:1}
-.page-hero-sub{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gl);margin-top:8px;position:relative;z-index:1}
-
-/* BODY — aynı .pbd */
-.page-body{margin:0 16px 16px;background:var(--bl);border-radius:0 0 18px 18px;border:1px solid var(--bm);border-top:none;padding:52px 52px 68px}
-.form-wrap{max-width:700px;margin:0 auto}
-
-/* Section başlıkları */
-.fsec{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.25rem;color:#4d7040;padding-bottom:10px;border-bottom:2px solid var(--g);margin:44px 0 24px}
-.fsec:first-child{margin-top:0}
-
-/* Grid & fields */
-.fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nw{position:fixed;top:0;left:0;right:0;z-index:999;padding:5px 16px;background:var(--bej)}
+nav{background:var(--blk);border-radius:12px;height:72px;display:flex;align-items:center;padding:0 28px;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nb{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1rem;color:var(--bl)}
+body{padding-top:88px}
+.main-container{width:100%}
+.banner{margin:0 16px 0;background:linear-gradient(135deg, var(--gd), #1a3a25);border-radius:18px 18px 0 0;padding:54px 52px 42px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+.banner::after{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:linear-gradient(135deg, var(--g), transparent);opacity:.15;filter:blur(20px)}
+.banner h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(2.4rem,4.5vw,4.2rem);color:var(--bl);line-height:1;position:relative;z-index:1;text-shadow:0 4px 12px rgba(0,0,0,.2)}
+.banner-sub{font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gl);margin-top:12px;position:relative;z-index:1;opacity:0.9}
+.body-wrap{margin:0 16px 16px;background:var(--bl);border-radius:0 0 18px 18px;border:1px solid var(--bm);border-top:none;padding:54px 52px 68px;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+.info-box{background:var(--bej);border:1.5px solid var(--bm);border-radius:14px;padding:22px 26px;margin-bottom:36px;display:flex;gap:18px;align-items:flex-start}
+.info-icon{width:44px;height:44px;border-radius:10px;background:var(--gd);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon svg{width:20px;height:20px;fill:none;stroke:var(--gl);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.info-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;margin-bottom:5px}
+.info-text{font-size:.78rem;color:var(--tm);line-height:1.75}
+.sec-title{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.2rem;color:#4d7040;padding-bottom:10px;border-bottom:2px solid var(--g);margin-bottom:22px;margin-top:36px}
+.sec-title:first-of-type{margin-top:0}
 .fld{margin-bottom:16px}
-.flbl{display:block;font-size:.52rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--gd);margin-bottom:6px}
-.req{color:#b0402e}
-.finp{width:100%;padding:11px 14px;border-radius:9px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.84rem;color:var(--txt);outline:none;resize:none;transition:border-color .18s,background .18s,box-shadow .18s}
-.finp:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 3px rgba(122,184,152,.14)}
+.flbl{display:block;font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gd);margin-bottom:5px}
+.req{color:#c0392b;margin-left:2px}
+.opt{color:var(--mu);font-weight:400;text-transform:none;letter-spacing:0;font-size:.5rem}
+.finp{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.85rem;color:var(--txt);outline:none;resize:vertical;transition:all .25s ease;box-shadow:inset 0 2px 4px rgba(0,0,0,.02)}
+.finp:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 4px rgba(122,184,152,.15), inset 0 2px 4px rgba(0,0,0,.02);transform:translateY(-1px)}
 .finp::placeholder{color:var(--bd)}
-.finp.err{border-color:#c0392b;background:#fff8f7}
-select.finp{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ab8a8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px}
-.ferr{font-size:.6rem;color:#b0402e;margin-top:5px;display:none}
-.ferr.on{display:block}
-.fhint{font-size:.6rem;color:var(--mu);margin-top:4px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 
-/* Relation chips + other input */
-.relation-wrap{display:flex;flex-direction:column;gap:8px}
-.rel-chips{display:flex;flex-wrap:wrap;gap:7px}
-.rel-chip{
-  padding:7px 14px;border-radius:22px;border:1.5px solid var(--bm);
-  background:var(--bej);font-family:'Raleway',sans-serif;font-size:.7rem;
-  font-weight:600;color:var(--tm);cursor:pointer;transition:all .14s;
-  user-select:none;white-space:nowrap;
-}
-.rel-chip:hover{border-color:var(--g);background:#edf5f0;color:var(--gd)}
-.rel-chip.sel{border-color:var(--gd);background:var(--gd);color:var(--bl)}
-.rel-chip.other-chip.sel{border-color:var(--blk);background:var(--blk);color:var(--gl)}
-.rel-other-input{width:100%;padding:10px 13px;border-radius:9px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.82rem;color:var(--txt);outline:none;transition:border-color .18s,background .18s;display:none}
-.rel-other-input:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 3px rgba(122,184,152,.14)}
-.rel-other-input::placeholder{color:var(--bd)}
-.rel-other-input.show{display:block}
+/* ── BAĞLAM SEÇİMİ ── */
+select.finp{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d5a3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;cursor:pointer}
+.ctx-extra{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--bm);background:var(--bej);font-family:'Raleway',sans-serif;font-size:.85rem;color:var(--txt);outline:none;margin-top:12px;transition:all .25s ease;box-shadow:inset 0 2px 4px rgba(0,0,0,.02);display:none}
+.ctx-extra:focus{border-color:var(--g);background:#fff;box-shadow:0 0 0 4px rgba(122,184,152,.15), inset 0 2px 4px rgba(0,0,0,.02);transform:translateY(-1px)}
+.ctx-extra.show{display:block}
 
-/* Photo upload */
-.photo-zone{border:2px dashed var(--bm);border-radius:14px;background:var(--bej);padding:22px 24px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:border-color .18s,background .18s;position:relative;overflow:hidden}
-.photo-zone:hover{border-color:var(--g);background:#eef6f2}
-.photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.photo-av{width:66px;height:66px;border-radius:50%;border:2.5px solid var(--bm);background:var(--blk);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;color:var(--gl);position:relative;z-index:1;transition:border-color .18s}
-.photo-av img{width:100%;height:100%;object-fit:cover;display:none;border-radius:50%}
-.photo-txt{flex:1;position:relative;z-index:1}
-.photo-title{font-size:.78rem;font-weight:700;color:var(--txt);margin-bottom:3px}
-.photo-sub{font-size:.62rem;color:var(--mu);line-height:1.55}
-.photo-sub strong{color:var(--gd)}
-.photo-zone.loaded{border-style:solid;border-color:var(--g)}
-.photo-zone.loaded .photo-av{border-color:var(--g)}
-.photo-rm{position:absolute;top:10px;right:10px;z-index:5;width:22px;height:22px;border-radius:50%;background:rgba(176,64,46,.85);border:none;cursor:pointer;display:none;align-items:center;justify-content:center;color:#fff;font-size:.62rem;font-weight:700;line-height:1}
-.photo-zone.loaded .photo-rm{display:flex}
-.photo-st{font-size:.6rem;color:var(--mu);margin-top:5px}
-.prog{height:3px;border-radius:2px;background:var(--bm);overflow:hidden;margin-top:6px;display:none}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--gd),var(--g));width:0%;transition:width .3s}
+/* ── YILDIZLAR ── */
+.star-wrap{display:flex;gap:8px;margin-bottom:8px}
+.star{width:42px;height:42px;cursor:pointer;background:none;border:none;padding:0;transition:transform .2s cubic-bezier(0.175, 0.885, 0.32, 1.275)}
+.star:hover,.star.on{transform:scale(1.2)}
+.star svg{width:42px;height:42px;fill:var(--bej);stroke:var(--bm);stroke-width:1.5;transition:all .2s ease;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,.05))}
+.star.on svg,.star.hov svg{fill:#f4c542;stroke:#c8980a;filter:drop-shadow(0 4px 8px rgba(244,197,66,.3))}
+.star-lbl{font-size:.67rem;color:var(--mu);font-weight:600;min-height:1.4em;margin-top:3px}
 
-/* Star rating */
-.stars{display:flex;flex-direction:row-reverse;gap:4px;margin-top:3px}
-.stars input[type=radio]{display:none}
-.stars label{font-size:2rem;cursor:pointer;color:var(--bm);transition:color .12s,transform .1s;line-height:1}
-.stars label:hover,.stars label:hover~label,.stars input:checked~label{color:#d4920a}
-.stars label:hover{transform:scale(1.12)}
-.star-cap{font-size:.6rem;color:var(--mu);margin-top:6px;font-weight:500;min-height:16px}
 
-/* Char counter */
-.char-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
-.char-ct{font-size:.55rem;color:var(--bd)}
-.char-ct.warn{color:#d4920a}
+/* ── GÖNDER ── */
+.fsub{width:100%;padding:18px;border-radius:14px;background:var(--gd);color:#fff;border:none;font-family:'Raleway',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);box-shadow:0 6px 20px rgba(45,90,61,.35);position:relative;overflow:hidden}
+.fsub::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left .5s ease}
+.fsub:hover:not(:disabled){background:var(--blk);transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.3)}
+.fsub:hover:not(:disabled)::after{left:150%}
+.fsub:disabled{background:var(--bd);cursor:not-allowed;box-shadow:none;transform:none}
 
-/* Optional toggle */
-.opt-row{display:flex;align-items:center;gap:11px;padding:14px 0;cursor:pointer;border-top:1px solid var(--bm);user-select:none}
-.opt-row input[type=checkbox]{display:none}
-.tog-track{width:38px;height:21px;border-radius:11px;background:var(--bm);position:relative;transition:background .2s;flex-shrink:0}
-.opt-row input:checked+.tog-track{background:var(--g)}
-.tog-thumb{position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .2s}
-.opt-row input:checked+.tog-track .tog-thumb{transform:translateX(17px)}
-.opt-label{font-size:.72rem;color:var(--tm);font-weight:500}
+/* ── HATA ── */
+.err-msg{font-size:.72rem;color:#c0392b;margin-bottom:12px;display:none;padding:10px 14px;background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);border-radius:8px}
 
-/* Submit */
-.submit-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px 28px;border-radius:50px;font-family:'Raleway',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--gd);color:var(--bl);border:none;cursor:pointer;margin-top:10px;transition:background .2s,transform .1s,box-shadow .2s;box-shadow:0 4px 18px rgba(45,90,61,.3)}
-.submit-btn:hover{background:var(--blk);transform:translateY(-1px);box-shadow:0 8px 28px rgba(24,32,28,.28)}
-.submit-btn:active{transform:none}
-.submit-btn:disabled{background:var(--bm);color:var(--bl);cursor:not-allowed;transform:none;box-shadow:none}
-.submit-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:sp .7s linear infinite;flex-shrink:0}
-@keyframes sp{to{transform:rotate(360deg)}}
+/* ── BAŞARI ── */
+.success-screen{display:none;text-align:center;padding:60px 20px}
+.sicon{width:70px;height:70px;border-radius:50%;background:#c6d9b8;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.sicon svg{width:30px;height:30px;fill:none;stroke:var(--gd);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.stitle{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.8rem;color:var(--gd);margin-bottom:10px}
+.stext{font-size:.82rem;color:var(--tm);line-height:1.75;max-width:460px;margin:0 auto}
 
-/* Global error */
-.glob-err{background:#fff5f5;border:1.5px solid #f5c6c6;border-radius:10px;padding:12px 16px;font-size:.72rem;color:#b0402e;margin-bottom:18px;display:none;line-height:1.65}
-.glob-err.on{display:block}
+.ft{margin:0 16px 16px;background:var(--blk);border-radius:12px;padding:16px 32px}
+.ftl{font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;color:var(--bd)}
 
-/* Success */
-.succ-card{display:none;margin:0 16px 16px;background:var(--bl);border-radius:18px;padding:72px 40px;text-align:center;border:1px solid var(--bm)}
-.succ-ico{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--gl),var(--gp));display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 4px 20px rgba(45,90,61,.22)}
-.succ-ico svg{width:32px;height:32px;fill:none;stroke:var(--gd);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.succ-h{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:2.1rem;color:var(--blk);margin-bottom:10px}
-.succ-p{font-size:.78rem;color:var(--mu);line-height:1.85;margin-bottom:28px}
-.succ-back{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:50px;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--gd);color:var(--bl);text-decoration:none;transition:background .2s}
-.succ-back:hover{background:var(--blk)}
-
-/* Footer */
-.page-footer{margin:0 16px 5px;background:var(--blk);border-radius:12px;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.pfl{font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;color:var(--bd)}
-.pfe{font-size:.76rem;color:var(--gl);text-decoration:none;font-weight:500}
-.pfe:hover{color:var(--bl)}
-
-/* Mobile */
-@media(max-width:700px){
-  .page-hero{padding:30px 24px 22px;margin:0 10px 0;border-radius:14px 14px 0 0}
-  .page-hero h1{font-size:2.2rem}
-  .page-body{margin:0 10px 10px;padding:28px 20px 44px}
-  .page-footer{margin:0 10px 5px;padding:14px 20px}
-  .succ-card{margin:0 10px 10px;padding:48px 22px}
+@media(max-width:768px){
+  .banner{margin:0 8px 0;padding:24px 20px 20px}
+  .body-wrap{margin:0 8px 10px;padding:22px 18px 40px}
   .fr2{grid-template-columns:1fr}
-  .stars label{font-size:1.7rem}
-  nav{padding:0 14px;gap:8px}
-  .nav-label{display:none}
-  .photo-zone{gap:14px}
+  .ctx-grid{grid-template-columns:1fr 1fr}
+  .ft{margin:0 8px 16px;padding:11px 16px}
 }
 @media(max-width:420px){
-  .page-hero h1{font-size:1.9rem}
-  .photo-zone{flex-direction:column;text-align:center}
+  .ctx-grid{grid-template-columns:1fr}
+  .star{width:32px;height:32px}
+  .star svg{width:32px;height:32px}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <div class="nw">
-  <nav>
-    <a class="nav-brand" href="https://erenakcam.github.io">Eren Akçam</a>
-    <div class="nav-sep"></div>
-    <span class="nav-label">Referans Formu</span>
-    <a class="nav-back" href="https://erenakcam.github.io">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Portfolio
-    </a>
-  </nav>
+  <nav><span class="nb">Eren Akçam</span></nav>
 </div>
 
-<!-- FORM -->
-<div id="form-wrap">
-  <div class="page-hero">
-    <h1>References</h1>
-    <div class="page-hero-sub">Deneyiminizi paylaşın</div>
-  </div>
-  <div class="page-body">
-    <div class="form-wrap">
+<div class="main-container">
 
-      <div class="glob-err" id="glob-err"></div>
+<div class="banner">
+  <h1>Referans Bırak</h1>
+  <div class="banner-sub">Deneyimini paylaş · Görüşünü yaz</div>
+</div>
 
-      <!-- ── 1. KİŞİSEL ── -->
-      <div class="fsec">Kişisel Bilgiler</div>
+<div class="body-wrap">
 
-      <div class="fr2">
-        <div class="fld">
-          <label class="flbl" for="rf-name">İsim Soyisim <span class="req">*</span></label>
-          <input class="finp" id="rf-name" type="text" placeholder="Adınız Soyadınız" autocomplete="name" maxlength="80" oninput="liveInitials()"/>
-          <div class="ferr" id="e-name">İsim zorunludur.</div>
-        </div>
-        <div class="fld">
-          <label class="flbl" for="rf-title">Ünvan / Pozisyon <span class="req">*</span></label>
-          <input class="finp" id="rf-title" type="text" placeholder="Yazılım Mühendisi, Öğretmen..." maxlength="80"/>
-          <div class="ferr" id="e-title">Ünvan zorunludur.</div>
-        </div>
-      </div>
-
-      <div class="fld">
-        <label class="flbl" for="rf-company">Şirket / Kurum</label>
-        <input class="finp" id="rf-company" type="text" placeholder="Çalıştığınız yer (isteğe bağlı)" autocomplete="organization" maxlength="80"/>
-      </div>
-
-      <!-- ── 2. NEREDEN TANIYORSUNUZ ── -->
-      <div class="fsec">Beni Nereden Tanıyorsunuz?</div>
-      <p class="fhint" style="margin-bottom:14px;margin-top:-18px">Birlikte çalıştığımız proje veya ilişki türünü seçin. Birden fazla seçebilirsiniz.</p>
-
-      <div class="fld">
-        <div class="relation-wrap">
-          <div class="rel-chips" id="rel-chips">
-            <!-- Ana sitedeki deneyim başlıkları + sabit seçenekler — JS ile dinamik doldurulacak -->
-          </div>
-          <input class="rel-other-input" id="rel-other-input" type="text"
-            placeholder="Beni nasıl tanıdığınızı yazın..." maxlength="120"/>
-        </div>
-        <div class="ferr" id="e-relation">Lütfen bir seçenek seçin veya yazın.</div>
-      </div>
-
-      <!-- ── 3. FOTOĞRAF ── -->
-      <div class="fsec">Profil Fotoğrafı</div>
-
-      <div class="photo-zone" id="photo-zone">
-        <input type="file" id="photo-input" accept="image/jpeg,image/png,image/webp,image/gif" onchange="handlePhoto(this)"/>
-        <div class="photo-av" id="photo-av">
-          <img id="photo-img" src="" alt=""/>
-          <span id="photo-initials">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          </span>
-        </div>
-        <div class="photo-txt">
-          <div class="photo-title">Fotoğraf Ekle <span style="font-weight:400;font-size:.6rem;color:var(--mu)">(isteğe bağlı)</span></div>
-          <div class="photo-sub">Referansınıza profil fotoğrafı ekleyin.<br/><strong>JPG · PNG · WEBP</strong> — maks. <strong>2 MB</strong></div>
-          <div class="prog" id="prog"><div class="prog-fill" id="prog-fill"></div></div>
-          <div class="photo-st" id="photo-st"></div>
-        </div>
-        <button type="button" class="photo-rm" id="photo-rm" onclick="removePhoto(event)" title="Kaldır">✕</button>
-      </div>
-
-      <!-- ── 4. DEĞERLENDİRME ── -->
-      <div class="fsec">Değerlendirme</div>
-
-      <div class="fld">
-        <label class="flbl">Genel Puan <span class="req">*</span></label>
-        <div class="stars" id="stars">
-          <input type="radio" name="rating" id="s5" value="5"/><label for="s5" title="Mükemmel">★</label>
-          <input type="radio" name="rating" id="s4" value="4"/><label for="s4" title="Çok İyi">★</label>
-          <input type="radio" name="rating" id="s3" value="3"/><label for="s3" title="İyi">★</label>
-          <input type="radio" name="rating" id="s2" value="2"/><label for="s2" title="Orta">★</label>
-          <input type="radio" name="rating" id="s1" value="1"/><label for="s1" title="Zayıf">★</label>
-        </div>
-        <div class="star-cap" id="star-cap">Bir yıldız seçin</div>
-        <div class="ferr" id="e-rating">Lütfen bir puan verin.</div>
-      </div>
-
-      <div class="fld">
-        <label class="flbl" for="rf-opinion">Görüşünüz <span class="req">*</span></label>
-        <textarea class="finp" id="rf-opinion" rows="6"
-          placeholder="Birlikte çalışma deneyiminizi, benim güçlü yönlerimi ve genel izleniminizi paylaşın..."
-          maxlength="1200" oninput="updateChar()"></textarea>
-        <div class="char-row">
-          <div class="ferr" id="e-opinion" style="margin-top:0">En az 20 karakter giriniz.</div>
-          <div class="char-ct" id="char-ct">0 / 1200</div>
-        </div>
-      </div>
-
-      <!-- ── 5. İLETİŞİM (opsiyonel) ── -->
-      <div class="fsec">İletişim Bilgileri</div>
-
-      <label class="opt-row" for="tog-contact">
-        <input type="checkbox" id="tog-contact" onchange="toggleContact(this.checked)"/>
-        <div class="tog-track"><div class="tog-thumb"></div></div>
-        <span class="opt-label">İletişim bilgilerimi paylaşmak istiyorum (isteğe bağlı)</span>
-      </label>
-
-      <div id="contact-wrap" style="display:none;padding-top:16px">
-        <div class="fr2">
-          <div class="fld">
-            <label class="flbl" for="rf-email">E-Posta</label>
-            <input class="finp" id="rf-email" type="email" placeholder="ornek@eposta.com" autocomplete="email"/>
-          </div>
-          <div class="fld">
-            <label class="flbl" for="rf-phone">Telefon</label>
-            <input class="finp" id="rf-phone" type="tel" placeholder="+90 5xx xxx xx xx" autocomplete="tel"/>
-          </div>
-        </div>
-        <div class="fld">
-          <label class="flbl" for="rf-linkedin">LinkedIn / Web Sitesi</label>
-          <input class="finp" id="rf-linkedin" type="url" placeholder="https://linkedin.com/in/..."/>
-        </div>
-      </div>
-
-      <button class="submit-btn" id="submit-btn" onclick="submitForm()">
-        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Referansı Gönder
-      </button>
-
+  <div class="info-box">
+    <div class="info-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div>
+      <div class="info-title">Nasıl Çalışıyor?</div>
+      <div class="info-text">Bıraktığın referans doğrudan benim inceleme panelime düşer. Onayladığım yorumlar portfolyo sitesinde "Referanslar" bölümünde görünür hale gelir. Telefon numaranı bırakırsan (zorunlu değil), ziyaretçiler seni arayarak referansı doğrulayabilir.</div>
     </div>
   </div>
-</div>
 
-<!-- SUCCESS -->
-<div class="succ-card" id="succ-card">
-  <div class="succ-ico"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-  <div class="succ-h">Teşekkür Ederim!</div>
-  <p class="succ-p">Referansınız başarıyla iletildi.<br/>İnceledikten sonra portfolyo siteme ekleyeceğim.</p>
-  <a class="succ-back" href="https://erenakcam.github.io">
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    Portfolio'ya Dön
-  </a>
-</div>
+  <div id="ref-form">
 
-<!-- FOOTER -->
-<div class="page-footer">
-  <span class="pfl">Portfolio</span>
-  <a class="pfe" href="https://erenakcam.github.io">erenakcam.github.io</a>
-</div>
+    <!-- KİMSİN -->
+    <div class="sec-title">Kimsin?</div>
+    <div class="fr2">
+      <div class="fld">
+        <label class="flbl">Ad Soyad <span class="req">*</span></label>
+        <input class="finp" id="r-name" type="text" placeholder="Adınız ve soyadınız"/>
+      </div>
+      <div class="fld">
+        <label class="flbl">Profil Fotoğrafı <span class="opt">(opsiyonel)</span></label>
+        <input class="finp" id="r-photo" type="file" accept="image/*" style="padding:11px 16px; background:#fff; cursor:pointer;" onchange="compressPhoto(event)"/>
+        <div style="font-size:0.55rem;color:var(--mu);margin-top:4px">Yüklenen fotoğraf otomatik küçültülecektir (Maks 100KB)</div>
+        <img id="r-photo-preview" src="" style="display:none; width:48px; height:48px; border-radius:50%; object-fit:cover; margin-top:8px; border:2px solid var(--bm); box-shadow:0 2px 8px rgba(0,0,0,.1);"/>
+      </div>
+    </div>
+    <div class="fr2">
+      <div class="fld">
+        <label class="flbl">Şirket / Kurum <span class="opt">(opsiyonel)</span></label>
+        <input class="finp" id="r-company" type="text" placeholder="Çalıştığınız yer"/>
+      </div>
+      <div class="fld">
+        <label class="flbl">Pozisyon / Unvan <span class="req">*</span></label>
+        <input class="finp" id="r-title" type="text" placeholder="Müdür, Öğretmen, İşveren..."/>
+      </div>
+    </div>
+
+    <!-- BAĞLAM -->
+    <div class="sec-title">Beni Nereden Tanıyorsun?</div>
+    <div class="fld">
+      <label class="flbl">İlişki Bağlamı <span class="req">*</span></label>
+      <select class="finp" id="r-context" onchange="checkCtx(this)">
+        <option value="" disabled selected>Lütfen seçiniz...</option>
+        <optgroup label="Deneyimlerim & Eğitim">
+          <option value="Freelance Proje (Bionluk)">Freelance Proje (Bionluk)</option>
+          <option value="Erasmus+ Staj (Weg Group)">Erasmus+ Staj (Weg Group)</option>
+          <option value="Eğitim (KOSBİ Zülfü-Mevlüt Çelik MTAL)">Eğitim (KOSBİ Zülfü-Mevlüt Çelik MTAL)</option>
+        </optgroup>
+        <optgroup label="Genel">
+          <option value="İş / Proje Arkadaşı">İş / Proje Arkadaşı</option>
+          <option value="Müşteri">Müşteri</option>
+          <option value="__other__">Diğer (Kendim Yazacağım)</option>
+        </optgroup>
+      </select>
+      <!-- Detay alanı — koşullu -->
+      <input class="ctx-extra" id="ctx-extra" type="text" placeholder="Açıklayın..."/>
+    </div>
+
+    <!-- DEĞERLENDİRME -->
+    <div class="sec-title">Değerlendirme</div>
+
+    <div class="fld">
+      <label class="flbl">Genel Puan <span class="req">*</span></label>
+      <div class="star-wrap" id="star-wrap">
+        <button type="button" class="star" data-v="1" onclick="setStar(1)" onmouseover="hovStar(1)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="2" onclick="setStar(2)" onmouseover="hovStar(2)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="3" onclick="setStar(3)" onmouseover="hovStar(3)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="4" onclick="setStar(4)" onmouseover="hovStar(4)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+        <button type="button" class="star" data-v="5" onclick="setStar(5)" onmouseover="hovStar(5)" onmouseout="unhov()"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+      </div>
+      <div class="star-lbl" id="star-lbl">Bir puan seçin</div>
+    </div>
+
+    <div class="fld">
+      <label class="flbl">Yorum <span class="req">*</span></label>
+      <textarea class="finp" id="r-comment" rows="8" placeholder="Eren'i nasıl tanıdınız, birlikte ne yaptınız, çalışma tarzını nasıl değerlendiriyorsunuz? Portfolyoda yazmayan, bizzat gözlemlediğiniz bir şeyi de ekleyebilirsiniz. İstediğiniz kadar uzun yazabilirsiniz."></textarea>
+    </div>
+
+    <!-- İLETİŞİM (OPSİYONEL) -->
+    <div class="sec-title">İletişim (Opsiyonel)</div>
+    <div class="fld">
+      <label class="flbl">İletişim Bilgileriniz <span class="opt">(Referansı doğrulamak isteyenler için)</span></label>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <input class="finp" id="r-phone" type="tel" placeholder="Telefon No (+90 5...)"/>
+        <input class="finp" id="r-email" type="email" placeholder="E-Posta Adresi"/>
+        <input class="finp" id="r-linkedin" type="url" placeholder="LinkedIn Profil Linki"/>
+      </div>
+    </div>
+
+    <div class="err-msg" id="r-err"></div>
+    <button type="button" class="fsub" id="r-submit" onclick="submitRef()">Referansı Gönder</button>
+
+  </div><!-- /ref-form -->
+
+  <div class="success-screen" id="ref-success">
+    <div class="sicon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="stitle">Referansın Alındı!</div>
+    <div class="stext">Teşekkürler! Referansın inceleme için gönderildi. Eren onayladıktan sonra portfolyo sitesinde görünür hale gelecek.</div>
+    <div style="margin-top:18px;display:inline-flex;align-items:center;gap:7px;background:var(--bej);border:1.5px solid var(--bm);border-radius:9px;padding:9px 16px">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gd)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span id="ref-ts" style="font-size:.68rem;color:var(--tm);font-weight:600;letter-spacing:.03em"></span>
+    </div>
+  </div>
+
+</div><!-- /body-wrap -->
+
+</div><!-- /main-container -->
+
+<div class="ft"><span class="ftl">Eren Akçam · Referans Formu</span></div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   CONFIG — Sadece bu 3 satırı doldurun
-   Token için: github.com → Settings → Developer settings →
-   Fine-grained tokens → References reposu → Contents: Read & Write
-══════════════════════════════════════════════════════════════ */
-var GH_TOKEN = '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';
-var GH_USER  = 'ErenAkcam';
-var GH_REPO  = 'References';
-
-/* ══════════════════════════════════════════════════════════════
-   RELATION CHIPS — Ana sitedeki deneyim + sabit seçenekler
-   Admin bu listeyi istediği zaman güncelleyebilir
-══════════════════════════════════════════════════════════════ */
-var RELATION_OPTIONS = [
-  /* Ana siteden çekilen deneyim başlıkları */
-  { label: 'Freelance — Graphic Designer',  icon: '🎨' },
-  { label: 'Erasmus+ Internship',           icon: '🇩🇪' },
-  { label: 'Okul / Akademi',               icon: '🎓' },
-  /* Sabit genel seçenekler */
-  { label: 'İş Arkadaşı',                  icon: '🤝' },
-  { label: 'Müşteri / İşveren',            icon: '💼' },
-  { label: 'Ortak Proje',                  icon: '🔗' },
-  { label: 'Sosyal Medya',                 icon: '📱' },
-  /* Diğer — her zaman en sonda */
-  { label: 'Diğer',                        icon: '✏️', other: true }
-];
-
-var _selectedRelations = [];
-var _photoFile = null;
-var STAR_LABELS = ['','Zayıf','Orta','İyi','Çok İyi','Mükemmel'];
-
-/* ── BUILD CHIPS ── */
-(function buildChips(){
-  var wrap = document.getElementById('rel-chips');
-  RELATION_OPTIONS.forEach(function(opt){
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'rel-chip' + (opt.other ? ' other-chip' : '');
-    btn.dataset.value = opt.label;
-    btn.dataset.other = opt.other ? '1' : '0';
-    btn.innerHTML = opt.icon + ' ' + opt.label;
-    btn.addEventListener('click', function(){ toggleChip(this); });
-    wrap.appendChild(btn);
-  });
-})();
-
-function toggleChip(btn){
-  var val   = btn.dataset.value;
-  var other = btn.dataset.other === '1';
-  var isOn  = btn.classList.contains('sel');
-
-  if(isOn){
-    btn.classList.remove('sel');
-    _selectedRelations = _selectedRelations.filter(function(v){ return v !== val; });
-  } else {
-    btn.classList.add('sel');
-    _selectedRelations.push(val);
-  }
-
-  /* Diğer chip açıkken text input göster */
-  var otherInput = document.getElementById('rel-other-input');
-  var otherChip  = document.querySelector('.other-chip');
-  if(otherChip && otherChip.classList.contains('sel')){
-    otherInput.classList.add('show');
-    otherInput.focus();
-  } else {
-    otherInput.classList.remove('show');
-    otherInput.value = '';
-  }
-
-  hide('e-relation');
-}
-
-/* ── LIVE INITIALS ── */
-function liveInitials(){
-  var name  = document.getElementById('rf-name').value.trim();
-  var parts = name.split(' ').filter(Boolean);
-  var init  = parts.map(function(p){ return p[0] || ''; }).join('').slice(0,2).toUpperCase();
-  var span  = document.getElementById('photo-initials');
-  if(!_photoFile && span){
-    span.innerHTML = init ||
-      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
-  }
-}
-
-/* ── STARS ── */
-document.querySelectorAll('.stars input[type=radio]').forEach(function(inp){
-  inp.addEventListener('change', function(){
-    var v = parseInt(this.value);
-    document.getElementById('star-cap').textContent = v + ' / 5 — ' + STAR_LABELS[v];
-    hide('e-rating');
-  });
-});
-
-/* ── CHAR COUNTER ── */
-function updateChar(){
-  var ta  = document.getElementById('rf-opinion');
-  var ct  = document.getElementById('char-ct');
-  var len = ta.value.length;
-  ct.textContent = len + ' / 1200';
-  ct.classList.toggle('warn', len > 1020);
-}
-
-/* ── CONTACT TOGGLE ── */
-function toggleContact(show){
-  document.getElementById('contact-wrap').style.display = show ? 'block' : 'none';
-}
-
-/* ── PHOTO ── */
-function handlePhoto(input){
-  var file = input.files[0]; if(!file) return;
-  if(file.size > 2 * 1024 * 1024){ setSt('⚠ Dosya 2 MB\'dan büyük olamaz.','#b0402e'); input.value=''; return; }
-  if(!file.type.startsWith('image/')){ setSt('⚠ Sadece resim dosyası yüklenebilir.','#b0402e'); input.value=''; return; }
-  _photoFile = file;
+/* ── FOTOĞRAF SIKIŞTIRMA ── */
+var _photoBase64 = null;
+function compressPhoto(event){
+  var file = event.target.files[0];
+  if(!file) return;
   var reader = new FileReader();
-  reader.onload = function(e){
-    var img  = document.getElementById('photo-img');
-    var span = document.getElementById('photo-initials');
-    img.src = e.target.result; img.style.display = 'block';
-    if(span) span.style.display = 'none';
-    document.getElementById('photo-zone').classList.add('loaded');
-    setSt('✓ ' + file.name + ' seçildi', 'var(--gd)');
-  };
   reader.readAsDataURL(file);
-}
-function removePhoto(e){
-  e.stopPropagation(); e.preventDefault();
-  _photoFile = null;
-  document.getElementById('photo-input').value = '';
-  var img  = document.getElementById('photo-img');
-  var span = document.getElementById('photo-initials');
-  img.src = ''; img.style.display = 'none';
-  if(span){ span.style.display = ''; liveInitials(); }
-  document.getElementById('photo-zone').classList.remove('loaded');
-  setSt('','');
-}
-function setSt(msg, color){
-  var el = document.getElementById('photo-st');
-  if(el){ el.textContent = msg; el.style.color = color || ''; }
-}
+  reader.onload = function(e){
+    var img = new Image();
+    img.src = e.target.result;
+    img.onload = function(){
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      var MAX_WIDTH = 250;
+      var MAX_HEIGHT = 250;
+      var width = img.width;
+      var height = img.height;
 
-/* ── PHOTO UPLOAD TO GITHUB ── */
-async function uploadPhoto(name){
-  if(!_photoFile) return null;
-  var ext  = (_photoFile.name.split('.').pop() || 'jpg').toLowerCase();
-  var safe = name.toLowerCase().replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').slice(0,28);
-  var path = 'assets/refs/' + Date.now() + '-' + safe + '.' + ext;
-
-  var prog = document.getElementById('prog');
-  var fill = document.getElementById('prog-fill');
-  if(prog) prog.style.display = 'block';
-  animProg(fill, 0, 65, 500);
-
-  var b64 = await toB64(_photoFile);
-  animProg(fill, 65, 88, 300);
-
-  try{
-    var resp = await ghPut(path, b64, 'Add reference photo: ' + name);
-    animProg(fill, 88, 100, 200);
-    if(resp.ok){
-      setSt('✓ Fotoğraf yüklendi', 'var(--gd)');
-      if(prog) setTimeout(function(){ prog.style.display = 'none'; }, 800);
-      return 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/main/' + path;
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      _photoBase64 = canvas.toDataURL('image/jpeg', 0.85);
+      
+      var preview = document.getElementById('r-photo-preview');
+      preview.src = _photoBase64;
+      preview.style.display = 'block';
     }
-    var er = await resp.json();
-    setSt('⚠ Fotoğraf yüklenemedi: ' + (er.message||''), '#b0402e');
-    if(prog) prog.style.display = 'none';
-    return null;
-  }catch(e){
-    setSt('⚠ Bağlantı hatası', '#b0402e');
-    if(prog) prog.style.display = 'none';
-    return null;
   }
 }
 
-function animProg(el, from, to, dur){
-  if(!el) return;
-  var s = performance.now();
-  (function step(now){
-    var t = Math.min((now - s) / dur, 1);
-    el.style.width = (from + (to - from) * t) + '%';
-    if(t < 1) requestAnimationFrame(step);
-  })(performance.now());
-}
+/* ── YILDIZ ── */
+var _star = 0;
+var starLabels = ['','Çok Kötü','Orta','İyi','Çok İyi','Mükemmel'];
 
-function toB64(file){
-  return new Promise(function(res, rej){
-    var r = new FileReader();
-    r.onload = function(e){ res(e.target.result.split(',')[1]); };
-    r.onerror = rej;
-    r.readAsDataURL(file);
+function hovStar(v){
+  document.querySelectorAll('.star').forEach(function(s){
+    s.classList.toggle('hov', parseInt(s.dataset.v) <= v);
   });
 }
-
-/* ── GITHUB HELPERS ── */
-function ghHeaders(){
-  return {
-    'Authorization': 'token ' + GH_TOKEN,
-    'Accept':        'application/vnd.github.v3+json',
-    'Content-Type':  'application/json'
-  };
-}
-async function ghPut(path, b64content, message, sha){
-  var body = { message: message, content: b64content, branch: 'main' };
-  if(sha) body.sha = sha;
-  return fetch('https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/' + path, {
-    method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body)
+function unhov(){
+  document.querySelectorAll('.star').forEach(function(s){
+    s.classList.remove('hov');
+    s.classList.toggle('on', parseInt(s.dataset.v) <= _star);
   });
 }
-async function ghDel(path, sha, message){
-  return fetch('https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/' + path, {
-    method: 'DELETE', headers: ghHeaders(),
-    body: JSON.stringify({ message: message, sha: sha, branch: 'main' })
+function setStar(v){
+  _star = v;
+  document.querySelectorAll('.star').forEach(function(s){
+    var sv = parseInt(s.dataset.v);
+    s.classList.toggle('on', sv <= v);
+    s.classList.remove('hov');
   });
-}
-async function ghGet(path){
-  return fetch('https://api.github.com/repos/' + GH_USER + '/' + GH_REPO + '/contents/' + path, {
-    method: 'GET', headers: ghHeaders()
-  });
+  document.getElementById('star-lbl').textContent = v + ' / 5 — ' + starLabels[v];
 }
 
-/* ── VALIDATE ── */
-function getRelationValue(){
-  /* Diğer seçiliyse text input değerini al */
-  var otherChip = document.querySelector('.other-chip');
-  var otherOn   = otherChip && otherChip.classList.contains('sel');
-  var otherText = document.getElementById('rel-other-input').value.trim();
-
-  var parts = _selectedRelations.filter(function(v){ return v !== 'Diğer'; });
-  if(otherOn && otherText) parts.push(otherText);
-
-  return parts.join(', ');
+/* ── BAĞLAM SEÇİMİ ── */
+function checkCtx(sel){
+  var val = sel.value;
+  var extra = document.getElementById('ctx-extra');
+  if(val === '__other__'){
+    extra.classList.add('show');
+    extra.placeholder = 'Bağlamı kendiniz yazın...';
+    setTimeout(function(){ extra.focus(); }, 50);
+  } else {
+    extra.classList.remove('show');
+    extra.value = '';
+  }
 }
 
-function validate(){
-  var ok = true;
-  function chk(id, errId, bad){
-    var el = document.getElementById(id);
-    if(bad){ if(el) el.classList.add('err'); show(errId); ok = false; }
-    else    { if(el) el.classList.remove('err'); hide(errId); }
-  }
-  chk('rf-name',    'e-name',    !g('rf-name'));
-  chk('rf-title',   'e-title',   !g('rf-title'));
-  chk('rf-opinion', 'e-opinion', g('rf-opinion').length < 20);
-
-  var relVal = getRelationValue();
-  var relBad = !relVal;
-  /* Diğer seçiliyse ama metin yazılmamışsa da hata */
-  var otherChip = document.querySelector('.other-chip');
-  if(otherChip && otherChip.classList.contains('sel') && !document.getElementById('rel-other-input').value.trim() && _selectedRelations.filter(function(v){ return v !== 'Diğer'; }).length === 0){
-    relBad = true;
-  }
-  if(relBad){ show('e-relation'); ok = false; } else { hide('e-relation'); }
-
-  var rating = document.querySelector('.stars input[type=radio]:checked');
-  if(!rating){ show('e-rating'); ok = false; } else { hide('e-rating'); }
-
-  return ok;
+/* ── HATA ── */
+function showErr(msg){
+  var e = document.getElementById('r-err');
+  e.textContent = msg; e.style.display = 'block';
+  e.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function clearErr(){
+  var e = document.getElementById('r-err');
+  e.style.display = 'none'; e.textContent = '';
 }
 
-/* ── SUBMIT ── */
-async function submitForm(){
-  hide('glob-err');
-  if(!validate()){
-    var first = document.querySelector('.ferr.on, .finp.err');
-    if(first) first.scrollIntoView({ behavior:'smooth', block:'center' });
-    return;
+/* ── GİTHUB CONFIG ── */
+function getGHCfg(){
+  try{
+    var s = localStorage.getItem('erensite_gh');
+    if(s){
+      var g = JSON.parse(s);
+      if(g.ref_token) return {token: g.ref_token, user: g.ref_user || 'ErenAkcam', repo: g.ref_repo || 'References'};
+      if(g.token) return {token: g.token, user: g.user || 'ErenAkcam', repo: g.repo || 'Personal.Website'};
+    }
+  }catch(e){}
+  return null;
+}
+
+/* ── DUPLICATE KONTROL ── */
+async function checkDuplicates(name){
+  var result = {count:0, ids:[]};
+  try{
+    var g = getGHCfg();
+    if(!g) return result;
+    var repo = g.repo || '__References__';
+    var norm = name.trim().toLowerCase();
+    var headers = {'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'};
+
+    try{
+      var r = await fetch('https://api.github.com/repos/'+g.user+'/'+repo+'/contents/refs_pending.json',{headers:headers});
+      if(r.ok){
+        var d = await r.json();
+        var list = JSON.parse(atob(d.content.replace(/\n/g,'')));
+        list.filter(function(p){ return p.name.trim().toLowerCase()===norm; })
+            .forEach(function(p){ result.ids.push(p.id); result.count++; });
+      }
+    }catch(e){}
+
+    try{
+      var r2 = await fetch('https://raw.githubusercontent.com/'+g.user+'/'+repo+'/main/approved_refs.json?_='+Date.now());
+      if(r2.ok){
+        var ap = await r2.json();
+        if(Array.isArray(ap)){
+          ap.filter(function(p){ return p.name.trim().toLowerCase()===norm; })
+            .forEach(function(p){ result.ids.push(p.id); result.count++; });
+        }
+      }
+    }catch(e){}
+  }catch(e){}
+  return result;
+}
+
+/* ── GITHUB PUSH ── */
+async function pushToGitHub(ref){
+  try{
+    var g = getGHCfg();
+    if(!g || !g.token) return;
+    var repo = g.repo || '__References__';
+    var url = 'https://api.github.com/repos/'+g.user+'/'+repo+'/contents/refs_pending.json';
+    var headers = {'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'};
+
+    var existing = []; var sha = null;
+    try{
+      var r = await fetch(url,{headers:{'Authorization':'token '+g.token,'Accept':'application/vnd.github.v3+json'}});
+      if(r.ok){ var d = await r.json(); sha = d.sha; existing = JSON.parse(atob(d.content.replace(/\n/g,''))); }
+    }catch(e){}
+
+    existing.push(ref);
+    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(existing, null, 2))));
+    var body = {message:'New ref from '+ref.name+(ref.isDuplicate?' [DUPLICATE x'+ref.dupCount+']':''), content:b64, branch:'main'};
+    if(sha) body.sha = sha;
+    await fetch(url,{method:'PUT',headers:headers,body:JSON.stringify(body)});
+  }catch(e){ console.warn('GH push failed:',e); }
+}
+
+/* ── GÖNDER ── */
+async function submitRef(){
+  clearErr();
+  var btn     = document.getElementById('r-submit');
+  var name    = document.getElementById('r-name').value.trim();
+  var title   = document.getElementById('r-title').value.trim();
+  var company = document.getElementById('r-company').value.trim();
+  var phone   = document.getElementById('r-phone').value.trim();
+  var email   = document.getElementById('r-email').value.trim();
+  var linkedin = document.getElementById('r-linkedin').value.trim();
+  var comment = document.getElementById('r-comment').value.trim();
+  var selCtx  = document.getElementById('r-context').value;
+  var extra   = document.getElementById('ctx-extra').value.trim();
+
+  var ctx = selCtx;
+  if(selCtx === '__other__'){
+    ctx = extra || 'Diğer';
   }
 
-  if(!GH_TOKEN || GH_TOKEN === 'BURAYA_TOKENINI_YAPISTIR'){
-    showErr('⚙️ Token ayarlanmamış. Dosyadaki GH_TOKEN değişkenini doldurun.');
-    return;
-  }
+  if(!name)    return showErr('Ad Soyad zorunludur.');
+  if(!title)   return showErr('Pozisyon / Unvan zorunludur.');
+  if(!selCtx)  return showErr('Lütfen bir ilişki bağlamı seçin.');
+  if(selCtx === '__other__' && !extra) return showErr('Lütfen ilişkinizi belirtin.');
+  if(!_star)   return showErr('Lütfen bir puan verin.');
+  if(!comment) return showErr('Lütfen yorum yazın.');
 
-  var btn = document.getElementById('submit-btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span>Gönderiliyor...';
+  btn.textContent = 'Gönderiliyor...';
 
-  var name = g('rf-name');
-  var now  = new Date();
-
-  /* Fotoğraf yükle */
-  var photoUrl = null;
-  if(_photoFile){
-    setSt('⏳ Fotoğraf yükleniyor...', 'var(--mu)');
-    photoUrl = await uploadPhoto(name);
-  }
-
-  /* Veriyi hazırla */
-  var data = {
-    name:       name,
-    title:      g('rf-title'),
-    company:    g('rf-company'),
-    relation:   getRelationValue(),
-    rating:     parseInt(document.querySelector('.stars input[type=radio]:checked').value),
-    opinion:    g('rf-opinion'),
-    photo:      photoUrl || '',
-    contact:{
-      email:    g('rf-email'),
-      phone:    g('rf-phone'),
-      linkedin: g('rf-linkedin')
-    },
-    submittedAt: now.toISOString(),
-    dateLabel:   now.toLocaleDateString('tr-TR',{year:'numeric',month:'long',day:'numeric'})
-                 + ' ' + now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})
+  var ref = {
+    id:        'ref_' + Date.now(),
+    date:      new Date().toISOString(),
+    name:      name,
+    title:     title,
+    company:   company,
+    phone:     phone,
+    email:     email,
+    linkedin:  linkedin,
+    photo:     _photoBase64,
+    ctx:       ctx,
+    star:      _star,
+    comment:   comment,
+    status:    'pending'
   };
 
-  /* pending/ klasörüne JSON kaydet */
-  var slug     = name.toLowerCase().replace(/[^a-z0-9]/g,'-').replace(/-+/g,'-').slice(0,28);
-  var filename = 'pending/' + now.getTime() + '-' + slug + '.json';
-  var b64      = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-
-  try{
-    var resp = await ghPut(filename, b64, 'New reference: ' + name);
-    if(resp.ok){
-      document.getElementById('form-wrap').style.display  = 'none';
-      document.getElementById('succ-card').style.display  = 'block';
-      window.scrollTo(0,0);
-    } else {
-      var er = await resp.json();
-      var msg = er.message || 'Bilinmeyen hata';
-      if(resp.status === 401) msg = 'Token hatalı veya yetkisiz. GitHub\'dan yeni token oluşturun (Contents: Read & Write).';
-      else if(resp.status === 404) msg = 'Repo bulunamadı: "' + GH_USER + '/' + GH_REPO + '"';
-      showErr('Gönderilemedi: ' + msg);
-      resetBtn();
-    }
-  }catch(e){
-    showErr('Bağlantı hatası: ' + e.message);
-    resetBtn();
+  var dupInfo = await checkDuplicates(name);
+  if(dupInfo.count > 0){
+    ref.isDuplicate = true;
+    ref.duplicateOf = dupInfo.ids;
+    ref.dupCount    = dupInfo.count;
   }
-}
 
-function resetBtn(){
-  var btn = document.getElementById('submit-btn');
+  await pushToGitHub(ref);
+
   btn.disabled = false;
-  btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Tekrar Dene';
+  btn.textContent = 'Referansı Gönder';
+
+  document.getElementById('ref-form').style.display = 'none';
+  document.getElementById('ref-success').style.display = 'block';
+  var now = new Date(ref.date);
+  var tsEl = document.getElementById('ref-ts');
+  if(tsEl) tsEl.textContent =
+    now.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'})
+    + ' · ' +
+    now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
 }
-
-/* ── UTILS ── */
-function g(id){ var e = document.getElementById(id); return e ? e.value.trim() : ''; }
-function show(id){ var e = document.getElementById(id); if(e) e.classList.add('on'); }
-function hide(id){ var e = document.getElementById(id); if(e) e.classList.remove('on'); }
-function showErr(msg){ var e = document.getElementById('glob-err'); if(e){ e.textContent = msg; e.classList.add('on'); e.scrollIntoView({behavior:'smooth',block:'center'}); } }
-
-/* ── clear err on focus ── */
-document.querySelectorAll('.finp').forEach(function(el){
-  el.addEventListener('focus', function(){ this.classList.remove('err'); });
-});
 </script>
 </body>
 </html>

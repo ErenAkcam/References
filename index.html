@@ -158,9 +158,10 @@
 </footer>
 
 <script>
-const REPO_OWNER = 'ErenAkcam';
-const REPO_NAME = 'References'; 
-const GITHUB_TOKEN = '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'; 
+// CONFIGURATION - THESE ARE AUTOMATICALLY SYNCED FROM THE ADMIN PANEL
+let REPO_OWNER = 'ErenAkcam';
+let REPO_NAME = 'references'; 
+let GITHUB_TOKEN = 'INSERT_LIMITED_TOKEN_HERE'; 
 
 let photoBase64 = "";
 
@@ -217,7 +218,7 @@ async function fetchRelations() {
           if(def.memory.experience) {
             const grp = document.createElement('optgroup'); grp.label = "Past Experience";
             def.memory.experience.forEach(exp => {
-              const opt = document.createElement('option'); opt.value = exp.company; opt.textContent = exp.company + ' (' + exp.role + ')';
+              const opt = document.createElement('option'); opt.value = exp.company; opt.textContent = exp.company + ' — ' + exp.title;
               grp.appendChild(opt);
             });
             select.insertBefore(grp, select.lastElementChild);
@@ -225,7 +226,7 @@ async function fetchRelations() {
           if(def.memory.education) {
             const grp = document.createElement('optgroup'); grp.label = "Education Path";
             def.memory.education.forEach(edu => {
-              const opt = document.createElement('option'); opt.value = edu.school; opt.textContent = edu.school + ' (' + edu.degree + ')';
+              const opt = document.createElement('option'); opt.value = edu.company; opt.textContent = edu.company + ' — ' + edu.title;
               grp.appendChild(opt);
             });
             select.insertBefore(grp, select.lastElementChild);
@@ -270,7 +271,7 @@ async function submitForm() {
   try {
     const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`, {
       method: 'POST',
-      headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: `Professional Reference from ${fname} ${lname}`, body: JSON.stringify(payload, null, 2), labels: ['reference'] })
     });
     if(response.ok) {

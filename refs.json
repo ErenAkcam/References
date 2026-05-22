@@ -1,1 +1,22 @@
-
+{
+  "pending": [
+    {
+      "id": "ref_1773574540001",
+      "name": "Ahmet Yılmaz",
+      "title": "Mühendislik Koordinatörü",
+      "relation": "Staj Amiri",
+      "message": "Eren, stajı süresince SolidWorks ve teknik çizim konularında üstün bir performans gösterdi. Öğrenme hızı ve disiplini son derece yüksek bir genç yetenek.",
+      "date": "2026-05-22"
+    }
+  ],
+  "approved": [
+    {
+      "id": "ref_1773574540002",
+      "name": "Mehmet Demir",
+      "title": "KOSBİ Zülfü-Mevlüt Çelik Yöneticisi",
+      "relation": "Öğretmen",
+      "message": "Eren Akçam, okulumuzun en başarılı ve çalışkan öğrencilerindendir. Hem teknik derslerdeki kabiliyeti hem de öğrenci konseyindeki liderlik vasıflarıyla öne çıkmaktadır.",
+      "date": "2026-05-20"
+    }
+  ]
+}

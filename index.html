@@ -750,6 +750,9 @@ nav{background:var(--blk);border-radius:12px;height:var(--nh);display:flex;align
 <script>
 var SK='erensite_data';
 
+// Google Apps Script Web App URL — Admin panelinden deploy edilmeden önce buraya da yazılabilir:
+var SITE_GAS_URL = '';
+
 
 /* ── Defaults — tüm içerik buraya gömülü ── */
 var DEF = {
@@ -764,7 +767,7 @@ var DEF = {
   "linkedin": "http://www.linkedin.com/in/erenakcam",
   "freelance": "",
   "profilePhoto": "assets/profile.png",
-  "refGasUrl": "",
+  "refGasUrl": SITE_GAS_URL,
   "colorGreen": "#7ab898",
   "colorGreenDeep": "#2d5a3d",
   "colorGreenLight": "#a8c9b8",
@@ -1113,7 +1116,7 @@ var DEF = {
         "company": "Bionluk Platform",
         "location": "",
         "date": "2022 — Today",
-        "logo": "https://play-lh.googleusercontent.com/XDKGzDD_jjY_KrqZg3COTdV9oW5e4lZjgOPGP07aOIaNsCqNdvcmVrocc7XFr01PdR0P",
+        "logo": "assets/bionluk-logo.png",
         "desc": "I have been working as a freelance graphic designer on the Bionluk platform since 2022. During this time, I have completed countless projects, gaining solid experience in both customer communication and professional design skills. My graphic design talent forms the basis of the technical and creative projects you will see in my portfolio.\n\n"
       },
       {
@@ -1944,9 +1947,21 @@ function submitRef() {
   }
   err.style.display = 'none';
 
-  var gasUrl = SD.refGasUrl || '';
+  // GAS URL'yi sırasıyla: DEF içinde gömülü → SITE_GAS_URL → localStorage SD → boş
+  var gasUrl = (typeof SITE_GAS_URL !== 'undefined' && SITE_GAS_URL) ? SITE_GAS_URL : '';
+  if (!gasUrl && typeof DEF !== 'undefined' && DEF.refGasUrl) gasUrl = DEF.refGasUrl;
+  if (!gasUrl && typeof SD !== 'undefined' && SD && SD.refGasUrl) gasUrl = SD.refGasUrl;
   if (!gasUrl) {
-    err.textContent = 'Sistem Hatası: Google Script Web App URL ayarlanmamış. Lütfen yönetici panelinden URL\'yi ekleyin.';
+    try {
+      var _lsd = localStorage.getItem(SK);
+      if (_lsd) {
+        var _parsed = JSON.parse(_lsd);
+        gasUrl = _parsed.refGasUrl || '';
+      }
+    } catch(e) {}
+  }
+  if (!gasUrl) {
+    err.textContent = 'Sistem Hatası: Google Script Web App URL ayarlanmamış. Lütfen yönetici panelinden URL\'yi girin ve kaydedin.';
     err.style.display = 'block';
     return;
   }

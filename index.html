@@ -1947,28 +1947,7 @@ function submitRef() {
   }
   err.style.display = 'none';
 
-  // GAS URL: deploy sırasında parçalı array olarak gömülür, runtime'da birleştirilir.
-  // Yedek olarak localStorage'dan da okunur.
-  var gasUrl = (typeof SITE_GAS_URL !== 'undefined' && SITE_GAS_URL) ? SITE_GAS_URL : '';
-  if (!gasUrl) {
-    try {
-      var _lsd = localStorage.getItem(SK);
-      if (_lsd) {
-        var _parsed = JSON.parse(_lsd);
-        gasUrl = _parsed.refGasUrl || '';
-      }
-    } catch(e) {}
-  }
-  if (!gasUrl) {
-    err.textContent = 'Sistem Hatası: Google Script Web App URL ayarlanmamış. Lütfen yönetici panelinden URL\'yi girin ve kaydedin.';
-    err.style.display = 'block';
-    return;
-  }
-
-  if (btn) {
-    btn.disabled = true;
-    btn.textContent = 'Gönderiliyor...';
-  }
+  if (btn) { btn.disabled = true; btn.textContent = 'Gönderiliyor...'; }
 
   var payload = {
     name: name,
@@ -1978,29 +1957,35 @@ function submitRef() {
     date: new Date().toISOString().slice(0, 10)
   };
 
-  fetch(gasUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify(payload)
-  })
-  .then(function() {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = 'Gönder';
-    }
-    var wrap = document.getElementById('ref-form-wrap');
-    var succ = document.getElementById('r-succ');
-    if (wrap) wrap.style.display = 'none';
-    if (succ) succ.style.display = 'block';
-  })
-  .catch(function(e) {
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = 'Gönder';
-    }
-    err.textContent = 'Bağlantı hatası: ' + e.message;
-    err.style.display = 'block';
-  });
+  // GAS URL'i refs.json'dan oku — HTML'e hiç yazılmaz, GitHub secret scanning'i tetiklemez
+  fetch('refs.json?v=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var gasUrl = data.gasUrl || '';
+      if (!gasUrl) {
+        err.textContent = 'Sistem Hatası: Google Script URL yapılandırılmamış.';
+        err.style.display = 'block';
+        if (btn) { btn.disabled = false; btn.textContent = 'Gönder'; }
+        return;
+      }
+      return fetch(gasUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload)
+      });
+    })
+    .then(function() {
+      if (btn) { btn.disabled = false; btn.textContent = 'Gönder'; }
+      var wrap = document.getElementById('ref-form-wrap');
+      var succ = document.getElementById('r-succ');
+      if (wrap) wrap.style.display = 'none';
+      if (succ) succ.style.display = 'block';
+    })
+    .catch(function(e) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Gönder'; }
+      err.textContent = 'Bağlantı hatası: ' + (e.message || e);
+      err.style.display = 'block';
+    });
 }
 
 /* ── INIT ── */

@@ -1569,7 +1569,7 @@ var pageHistory=[];
    Deploy ettikten sonra URL'i buraya yapıştır.
    Örnek: 'https://script.google.com/macros/s/AKfycb.../exec'
 ──────────────────────────────────────────────────────────────── */
-var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOygn61F1XBjrR6FmrQQAqMJmRIeqTpPnAB83Hdv4ozWv5SReQb725K8DH6erVIbmU/exec';
 
 function submitRefForm() {
   var name     = document.getElementById('r-name').value.trim();
@@ -1678,8 +1678,8 @@ function loadRefs() {
     .then(function(r){ return r.json(); })
     .then(function(data){
       var jsonRefs = data.references || [];
-      // Show newly submitted ones (where approved is not false)
-      var activeJsonRefs = jsonRefs.filter(function(r){ return r.approved !== false; });
+      // Show all saved references from refs.json
+      var activeJsonRefs = jsonRefs;
       
       // Get default references
       var defaultRefs = (SD.references || []).filter(function(r){ return r.status === 'published'; });

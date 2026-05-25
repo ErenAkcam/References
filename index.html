@@ -1132,6 +1132,29 @@ function getInitialsAvatar(name, size) {
     '">' + esc(initials) + '</div>';
 }
 
+function getLinkedInUsername(url) {
+  if (!url) return '';
+  var clean = url.trim()
+    .replace(/^(https?:\/\/)?(www\.)?/, '')
+    .replace(/\/+$/, '');
+  
+  var inIdx = clean.indexOf('linkedin.com/in/');
+  if (inIdx !== -1) {
+    var sub = clean.substring(inIdx + 16);
+    return sub.split('/')[0].split('?')[0];
+  }
+  
+  var compIdx = clean.indexOf('linkedin.com/company/');
+  if (compIdx !== -1) {
+    var sub = clean.substring(compIdx + 21);
+    return sub.split('/')[0].split('?')[0];
+  }
+
+  var parts = clean.split('/');
+  var last = parts[parts.length - 1].split('?')[0];
+  return last || 'LinkedIn';
+}
+
 /* ── Load data — her zaman DEF kullan (admin deploy eder) ── */
 function lSD(){
   return clone(DEF);
@@ -1569,7 +1592,7 @@ var pageHistory=[];
    Deploy ettikten sonra URL'i buraya yapıştır.
    Örnek: 'https://script.google.com/macros/s/AKfycb.../exec'
 ──────────────────────────────────────────────────────────────── */
-var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzOygn61F1XBjrR6FmrQQAqMJmRIeqTpPnAB83Hdv4ozWv5SReQb725K8DH6erVIbmU/exec';
+var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoHYtwxvMeUnTqRbI7v0Us1X0hVewLyRe9reZc9F5GTwngzaLQSJ-S6fErZu7-8RezIg/exec';
 
 function submitRefForm() {
   var name     = document.getElementById('r-name').value.trim();
@@ -1670,26 +1693,15 @@ function _clearRefForm() {
 function loadRefs() {
   var list = document.getElementById('ref-list');
   if(!list) return;
-
-  // Cache-bust: her yüklemede en güncel dosyayı çek
   var url = 'refs.json?_=' + new Date().getTime();
-
   fetch(url)
     .then(function(r){ return r.json(); })
     .then(function(data){
       var jsonRefs = data.references || [];
-      // Show all saved references from refs.json
-      var activeJsonRefs = jsonRefs;
-      
-      // Get default references
       var defaultRefs = (SD.references || []).filter(function(r){ return r.status === 'published'; });
-      
-      // Avoid duplication by checking if names exist in json
-      var jsonNames = activeJsonRefs.map(function(r){ return r.name; });
+      var jsonNames = jsonRefs.map(function(r){ return r.name; });
       var filteredDefaults = defaultRefs.filter(function(r){ return !jsonNames.includes(r.name); });
-      
-      var allRefs = activeJsonRefs.concat(filteredDefaults);
-      
+      var allRefs = jsonRefs.concat(filteredDefaults);
       if(!allRefs.length) {
         list.innerHTML = '<p style="color:var(--mu);font-size:.9rem;text-align:center;">No references published yet.</p>';
         return;
@@ -1697,7 +1709,6 @@ function loadRefs() {
       list.innerHTML = allRefs.map(function(r){ return buildRefCard(r); }).join('');
     })
     .catch(function(){
-      // Fallback to default references on error
       var defaultRefs = (SD.references || []).filter(function(r){ return r.status === 'published'; });
       if (defaultRefs.length) {
         list.innerHTML = defaultRefs.map(function(r){ return buildRefCard(r); }).join('');
@@ -1713,37 +1724,30 @@ function buildRefCard(r) {
   for(var i=1; i<=5; i++){
     stars += '<span style="color:'+(i<=r.rating?'#f1c40f':'var(--bm)')+';font-size:1rem;">★</span>';
   }
-
   var avatar = r.photo
     ? '<div style="width:56px;height:56px;border-radius:50%;background-image:url('+esc(r.photo)+');background-size:cover;background-position:center;border:2px solid var(--bm);flex-shrink:0;"></div>'
     : getInitialsAvatar(r.name, 56);
-
   var period = r.period || (r.period_start + (r.period_end ? ' – ' + r.period_end : ' – Present'));
-
   var links = '';
-  if(r.linkedin) links += '<a href="'+esc(r.linkedin)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;">'+
-    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>';
-  if(r.email) links += '<a href="mailto:'+esc(r.email)+'" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;">'+
-    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>';
-  if(r.phone) links += '<a href="tel:'+esc(r.phone)+'" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;">'+
-    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Phone</a>';
-
+  if(r.linkedin) {
+    var liUser = getLinkedInUsername(r.linkedin);
+    links += '<a href="'+esc(r.linkedin)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>' + esc(liUser) + '</a>';
+  }
+  if(r.email) {
+    links += '<a href="mailto:'+esc(r.email)+'" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>' + esc(r.email) + '</a>';
+  }
+  if(r.phone) {
+    links += '<a href="tel:'+esc(r.phone)+'" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>' + esc(r.phone) + '</a>';
+  }
   return '<div style="background:var(--bl);border:1.5px solid var(--bm);border-radius:16px;padding:28px 28px 24px;box-shadow:0 3px 14px rgba(0,0,0,.06);">'+
-    '<div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:18px;">'+
-      avatar+
-      '<div style="flex:1;min-width:0;">'+
-        '<div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.1rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;">'+esc(r.name)+'</div>'+
+    '<div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:18px;">'+avatar+
+      '<div style="flex:1;min-width:0;"><div style="font-family:\'Barlow Condensed\',sans-serif;font-size:1.1rem;font-weight:700;color:var(--txt);letter-spacing:.04em;text-transform:uppercase;">'+esc(r.name)+'</div>'+
         '<div style="font-size:.72rem;color:var(--gd);font-weight:600;margin-top:2px;">'+esc(r.title)+' · '+esc(r.company)+'</div>'+
         '<div style="font-size:.63rem;color:var(--mu);margin-top:2px;">'+esc(r.context)+' · '+esc(period)+'</div>'+
-        '<div style="margin-top:5px;">'+stars+'</div>'+
-        links+
-      '</div>'+
-    '</div>'+
+        '<div style="margin-top:5px;">'+stars+'</div>'+links+'</div></div>'+
     '<div style="position:relative;padding-left:18px;border-left:3px solid var(--g);">'+
       '<svg width="18" height="14" viewBox="0 0 24 20" fill="var(--gp)" style="position:absolute;top:-2px;left:-2px;opacity:.6"><path d="M0 20 C0 8 4 2 12 0L14 4C8 6 6 10 7 14H12V20H0Z M12 20 C12 8 16 2 24 0L26 4C20 6 18 10 19 14H24V20H12Z"/></svg>'+
-      '<p style="font-size:.84rem;line-height:1.85;color:var(--tm);font-weight:300;padding-left:14px;">'+esc(r.desc)+'</p>'+
-    '</div>'+
-  '</div>';
+      '<p style="font-size:.84rem;line-height:1.85;color:var(--tm);font-weight:300;padding-left:14px;">'+esc(r.desc)+'</p></div></div>';
 }
 
 function openRefPanel() {

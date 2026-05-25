@@ -1569,7 +1569,7 @@ var pageHistory=[];
    Deploy ettikten sonra URL'i buraya yapıştır.
    Örnek: 'https://script.google.com/macros/s/AKfycb.../exec'
 ──────────────────────────────────────────────────────────────── */
-var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoHYtwxvMeUnTqRbI7v0Us1X0hVewLyRe9reZc9F5GTwngzaLQSJ-S6fErZu7-8RezIg/exec';
+var GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
 
 function submitRefForm() {
   var name     = document.getElementById('r-name').value.trim();
@@ -1677,15 +1677,33 @@ function loadRefs() {
   fetch(url)
     .then(function(r){ return r.json(); })
     .then(function(data){
-      var refs = (data.references || []).filter(function(r){ return r.approved; });
-      if(!refs.length) {
+      var jsonRefs = data.references || [];
+      // Show newly submitted ones (where approved is not false)
+      var activeJsonRefs = jsonRefs.filter(function(r){ return r.approved !== false; });
+      
+      // Get default references
+      var defaultRefs = (SD.references || []).filter(function(r){ return r.status === 'published'; });
+      
+      // Avoid duplication by checking if names exist in json
+      var jsonNames = activeJsonRefs.map(function(r){ return r.name; });
+      var filteredDefaults = defaultRefs.filter(function(r){ return !jsonNames.includes(r.name); });
+      
+      var allRefs = activeJsonRefs.concat(filteredDefaults);
+      
+      if(!allRefs.length) {
         list.innerHTML = '<p style="color:var(--mu);font-size:.9rem;text-align:center;">No references published yet.</p>';
         return;
       }
-      list.innerHTML = refs.map(function(r){ return buildRefCard(r); }).join('');
+      list.innerHTML = allRefs.map(function(r){ return buildRefCard(r); }).join('');
     })
     .catch(function(){
-      list.innerHTML = '<p style="color:var(--mu);font-size:.9rem;text-align:center;">No references published yet.</p>';
+      // Fallback to default references on error
+      var defaultRefs = (SD.references || []).filter(function(r){ return r.status === 'published'; });
+      if (defaultRefs.length) {
+        list.innerHTML = defaultRefs.map(function(r){ return buildRefCard(r); }).join('');
+      } else {
+        list.innerHTML = '<p style="color:var(--mu);font-size:.9rem;text-align:center;">No references published yet.</p>';
+      }
     });
 }
 
@@ -1700,11 +1718,13 @@ function buildRefCard(r) {
     ? '<div style="width:56px;height:56px;border-radius:50%;background-image:url('+esc(r.photo)+');background-size:cover;background-position:center;border:2px solid var(--bm);flex-shrink:0;"></div>'
     : getInitialsAvatar(r.name, 56);
 
-  var period = r.period_start + (r.period_end ? ' – ' + r.period_end : ' – Present');
+  var period = r.period || (r.period_start + (r.period_end ? ' – ' + r.period_end : ' – Present'));
 
   var links = '';
-  if(r.linkedin) links += '<a href="'+esc(r.linkedin)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;">'+
+  if(r.linkedin) links += '<a href="'+esc(r.linkedin)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;margin-right:8px;">'+
     '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>';
+  if(r.email) links += '<a href="mailto:'+esc(r.email)+'" style="display:inline-flex;align-items:center;gap:4px;font-size:.6rem;font-weight:700;color:var(--gd);text-decoration:none;background:var(--gp);border:1px solid var(--bm);border-radius:20px;padding:3px 10px;margin-top:8px;">'+
+    '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>';
 
   return '<div style="background:var(--bl);border:1.5px solid var(--bm);border-radius:16px;padding:28px 28px 24px;box-shadow:0 3px 14px rgba(0,0,0,.06);">'+
     '<div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:18px;">'+
